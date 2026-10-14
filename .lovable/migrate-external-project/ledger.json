@@ -1,0 +1,73 @@
+{
+  "source": "SwiftSolve-master.zip",
+  "capabilities": [
+    {
+      "capability": "Eight public pages and navigation",
+      "source": "HTML files",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Brand and service images",
+      "source": "img/",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Presentation audio",
+      "source": "aud/Discurso.mp3",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Login demonstration",
+      "source": "script.js simulated alert; no authentication provider",
+      "outcome": "preserve as explicitly labeled demonstration",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Contacts",
+      "source": "contactos.html",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Database, records, auth identities, authorization, storage providers, external APIs, callbacks, webhooks, schedules, secrets",
+      "source": "All source files; static HTML with no provider calls",
+      "outcome": "not detected",
+      "status": "not_applicable",
+      "next_action": null
+    },
+    {
+      "capability": "Cutover",
+      "source": "Unpublished Lovable project",
+      "outcome": "await user publication",
+      "status": "pending",
+      "next_action": "User may publish after reviewing"
+    },
+    {
+      "capability": "Verification",
+      "source": "Migrated preview",
+      "outcome": "verify",
+      "status": "verified",
+      "next_action": null
+    }
+  ],
+  "verification": {
+    "pages": 8,
+    "services": 6,
+    "images": "loaded",
+    "audio": "readyState 4, no error",
+    "demo": "submitted and explicitly labeled",
+    "colors": "clipboard verified",
+    "legacy_urls": "redirect verified",
+    "mobile": "no horizontal overflow; navigation verified",
+    "runtime_errors": [],
+    "build": "OK"
+  }
+}

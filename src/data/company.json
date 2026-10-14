@@ -1,0 +1,154 @@
+{
+  "mision-vision": [
+    {
+      "title": "Misión",
+      "paragraphs": [
+        "Optimizar y desarrollar software innovador y eficiente. Brindar soluciones tecnológicas que impulsen el acercamiento a nuevas técnicas de programación. A través de nuestro compromiso con la calidad, la creatividad y la mejora continua, trabajamos para facilitar el acceso a herramientas digitales que generen un impacto positivo en la sociedad, fomentando el desarrollo profesional y la inclusión en el mundo tecnológico."
+      ],
+      "items": []
+    },
+    {
+      "title": "Visión",
+      "paragraphs": [
+        "Convertirnos en una empresa líder en el desarrollo de software, impulsando la innovación y la transformación digital a nivel global. Expandir nuestro impacto creando soluciones tecnológicas de alto valor, generando oportunidades de empleo y colaborando con empresas y comunidades para construir un futuro más conectado, eficiente y accesible."
+      ],
+      "items": []
+    }
+  ],
+  "valores": [
+    {
+      "title": "Innovación",
+      "paragraphs": [
+        "Buscamos constantemente nuevas tecnologías y metodologías para ofrecer soluciones eficientes y de vanguardia."
+      ],
+      "items": []
+    },
+    {
+      "title": "Calidad",
+      "paragraphs": [
+        "Nos enfocamos en desarrollar software robusto, escalable y optimizado para garantizar el mejor rendimiento en cada trabajo."
+      ],
+      "items": []
+    },
+    {
+      "title": "Compromiso",
+      "paragraphs": [
+        "Nos involucramos con cada proyecto como si fuera propio, asegurándonos de cumplir con los objetivos y superar las expectativas."
+      ],
+      "items": []
+    },
+    {
+      "title": "Trabajo en equipo",
+      "paragraphs": [
+        "Fomentamos la colaboración y el aprendizaje continuo, creando un entorno donde la creatividad y la tecnología se combinan."
+      ],
+      "items": []
+    },
+    {
+      "title": "Orientación al cliente",
+      "paragraphs": [
+        "Entendemos las necesidades de nuestros clientes y trabajamos en estrecha colaboración para ofrecer soluciones personalizadas."
+      ],
+      "items": []
+    },
+    {
+      "title": "Ética y transparencia",
+      "paragraphs": [
+        "Actuamos con honestidad e integridad en cada paso, construyendo relaciones basadas en la confianza y la responsabilidad."
+      ],
+      "items": []
+    }
+  ],
+  "estructura": [
+    {
+      "title": "Nivel Ejecutivo",
+      "paragraphs": [],
+      "items": [
+        "Consejo de Administración: Define la visión tecnológica y aprueba inversiones en I+D.",
+        "Director General (CEO): Encargado de ejecutar la visión aprobada y supervisar todas las áreas funcionales."
+      ]
+    },
+    {
+      "title": "Dirección Intermedia",
+      "paragraphs": [],
+      "items": [
+        "CTO (Chief Technology Officer): Administra la arquitectura de software, la innovación y los equipos técnicos.",
+        "Director de Desarrollo de Software: Supervisa equipos de programación y ciclos de vida del producto.",
+        "Director de Operaciones (COO): Optimiza infraestructura cloud y DevOps.",
+        "Director de Marketing Digital: Promueve soluciones SaaS en modelos B2B/B2C."
+      ]
+    },
+    {
+      "title": "Equipos Técnicos y Funcionales",
+      "paragraphs": [],
+      "items": [
+        "Desarrolladores: Codifican, revisan y automatizan aplicaciones (Frontend, Backend, Full-Stack).",
+        "QA Testing: Asegura la calidad mediante pruebas manuales y automatizadas.",
+        "DevOps & Cloud: Gestiona despliegues en nubes como AWS o Azure.",
+        "Data Science & AI: Desarrolla modelos de Machine Learning y análisis de datos.",
+        "Soporte Técnico: Provee ayuda técnica y recopila opiniones de clientes.",
+        "Educadores: Capacitan a los equipos en los servicios que se ofrecen."
+      ]
+    }
+  ],
+  "paleta": [
+    {
+      "title": "Crecimiento y Progreso",
+      "paragraphs": [
+        "El verde vibrante simboliza la innovación constante y el compromiso de SwiftSolve con el avance tecnológico. Representa el crecimiento tanto de la empresa como de sus clientes, a través de soluciones inteligentes que impulsan el desarrollo sostenido."
+      ],
+      "items": []
+    },
+    {
+      "title": "Elegancia y Sofisticación",
+      "paragraphs": [
+        "El negro aporta una presencia sólida, seria y profesional. Transmite sofisticación y confianza, posicionando a SwiftSolve como un referente confiable en el sector tech. Su uso da estructura visual y resalta la calidad de nuestros servicios."
+      ],
+      "items": []
+    },
+    {
+      "title": "Pureza y Precisión",
+      "paragraphs": [
+        "El blanco complementa el conjunto con una sensación de orden, limpieza y claridad técnica. Es un símbolo de transparencia, precisión y eficiencia en cada solución ofrecida. SwiftSolve trabaja con un enfoque limpio y directo."
+      ],
+      "items": []
+    }
+  ],
+  "metodologia": [
+    {
+      "title": "Análisis de Requisitos",
+      "paragraphs": [
+        "Evaluación detallada de necesidades y objetivos"
+      ],
+      "items": []
+    },
+    {
+      "title": "Diseño UX/UI",
+      "paragraphs": [
+        "Creación de interfaces intuitivas y experiencias de usuario excepcionales"
+      ],
+      "items": []
+    },
+    {
+      "title": "Desarrollo Ágil",
+      "paragraphs": [
+        "Implementación usando Scrum y Kanban para máxima eficiencia"
+      ],
+      "items": []
+    },
+    {
+      "title": "Control de Calidad",
+      "paragraphs": [
+        "Pruebas exhaustivas y validación de funcionalidades"
+      ],
+      "items": []
+    },
+    {
+      "title": "Entrega y Soporte",
+      "paragraphs": [
+        "Implementación exitosa con soporte continuo post-lanzamiento"
+      ],
+      "items": []
+    }
+  ]
+}
