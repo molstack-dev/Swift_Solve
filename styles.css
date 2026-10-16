@@ -1,10 +1,9 @@
-
 /* ============================================================
-   SWIFTSOLVE — STYLES.CSS (mejorado)
+   SWIFTSOLVE — STYLES.CSS
    Paleta: verde #00d084 · negro #101311 · blanco #f4f7f5
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Parisienne&display=swap');
 
 :root {
     --bg: #101311;
@@ -15,6 +14,7 @@
     --text-2: #c1cbc4;
     --muted: #a5b0a9;
     --green: #00d084;
+    --green-bright: #4dffb8;
     --green-dark: #00a86b;
     --line: #232b26;
     --line-2: #2e3832;
@@ -258,6 +258,9 @@ button {
 /* ============================================================
    HERO
    ============================================================ */
+/* ============================================================
+   HERO
+   ============================================================ */
 .hero {
     position: relative;
     min-height: 640px;
@@ -322,11 +325,12 @@ button {
     50%      { opacity: 0.5; transform: scale(0.85); }
 }
 
+/* ── H1 con degradado ── */
 .hero h1 {
-    font-size: clamp(3.5rem, 9vw, 7rem);
-    line-height: 1.02;
-    letter-spacing: -0.075em;
-    margin: 24px 0 8px;
+    font-size: clamp(2.8rem, 6vw, 4.4rem);       /* ← antes 3.5–7rem: más contenido */
+    line-height: 1.05;
+    letter-spacing: -0.06em;
+    margin: 20px 0 4px;
     font-weight: 800;
     background: linear-gradient(135deg, #ffffff 40%, var(--green) 100%);
     -webkit-background-clip: text;
@@ -334,18 +338,39 @@ button {
     -webkit-text-fill-color: transparent;
 }
 
-.hero h2 {
-    font-size: clamp(1.9rem, 4.5vw, 3.6rem);
-    line-height: 1.15;
-    letter-spacing: -0.05em;
-    margin: 0 0 24px;
+/* El punto verde dentro del H1 necesita recuperar su color */
+.hero h1 .brand-dot {
+    color: var(--green);
+    -webkit-text-fill-color: var(--green);
+}
+
+/* ── Eslogan en dos líneas ── */
+.eslogan-texto {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: clamp(1.5rem, 3.2vw, 2.4rem);     /* ← antes 1.9–3.6rem: menos invasivo */
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin: 4px 0 20px;
     font-weight: 600;
     color: var(--text);
 }
 
-.hero h2 span,
-.about-section h2 span {
+.eslogan-texto .linea-1 {
+    display: block;
+    color: var(--text);
+}
+
+.eslogan-texto .linea-2 {
+    display: block;
+    font-family: 'Parisienne', cursive;
+    font-weight: 400;
+    font-size: 1.55em;                            /* Parisienne necesita más tamaño para igualar visualmente */
+    letter-spacing: 0;
+    line-height: 1;
     color: var(--green);
+    margin-top: 0.05em;
+    text-shadow: 0 0 18px rgba(0, 208, 132, 0.35);
+    white-space: nowrap;                          /* ← evita que se rompa en 2 renglones */
 }
 
 .hero-description {
@@ -1100,7 +1125,7 @@ button {
     .hero { min-height: 580px; }
     .hero-content { padding: 70px 0; }
     .hero h1 { font-size: 3.4rem; }
-    .hero h2 { font-size: 1.85rem; }
+    .eslogan-texto { font-size: 1.85rem; }
     .hero-description { font-size: 0.98rem; }
     .hero-buttons { align-items: stretch; flex-direction: column; max-width: 340px; }
     .hero-buttons .button { width: 100%; }

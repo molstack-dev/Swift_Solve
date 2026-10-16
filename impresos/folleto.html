@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Folleto — SwiftSolve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+    <style>
+        /* ============================================================
+           SAFETY OVERRIDES
+           ============================================================ */
+        html, body {
+            background: #1a1a1a;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            min-height: 100vh;
+            overflow-x: visible;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        a { color: inherit; text-decoration: none; font-style: normal; }
+        a:hover { font-style: normal; }
+
+        :root {
+            --green: #00d084;
+            --green-bright: #4dffb8;
+            --green-deep: #00a86b;
+            --dark-deep: #0a0f0c;
+            --dark-mid: #101311;
+            --glow: #00a86b;
+            --bg: #0a0f0c;
+            --text: #f4f7f5;
+            --muted: #a5b0a9;
+            --line: rgba(0,208,132,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @page { size: 297mm 210mm; margin: 0; }
+
+        /* ============================================================
+           PÁGINA
+           ============================================================ */
+        .page {
+            width: 297mm;
+            height: 210mm;
+            display: grid;
+            grid-template-columns: 99mm 99mm 99mm;
+            color: var(--text);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,168,107,0.5);
+            position: relative;
+        }
+
+        .page + .page { page-break-before: always; }
+
+        .panel {
+            padding: 10mm 8mm;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============================================================
+           FONDOS
+           ============================================================ */
+        .bg-portada {
+            background:
+                radial-gradient(ellipse at top left, rgba(0,208,132,0.30) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(0,168,107,0.45) 0%, transparent 60%),
+                linear-gradient(160deg, #0a0f0c 0%, #101311 50%, #0a0f0c 100%);
+        }
+
+        .bg-interior {
+            background:
+                radial-gradient(ellipse at center right, rgba(0,208,132,0.15) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0f0c 0%, #101311 100%);
+        }
+
+        .bg-interior-alt {
+            background:
+                radial-gradient(ellipse at top right, rgba(0,208,132,0.18) 0%, transparent 55%),
+                linear-gradient(200deg, #101311 0%, #0a0f0c 60%, #0a0f0c 100%);
+        }
+
+        .bg-contra {
+            background:
+                radial-gradient(ellipse at center, rgba(0,208,132,0.30) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom, rgba(0,168,107,0.35) 0%, transparent 50%),
+                linear-gradient(160deg, #0a0f0c 0%, #101311 100%);
+        }
+
+        /* ============================================================
+           PORTADA
+           ============================================================ */
+        .portada-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+            padding: 4mm 2mm;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portada-marco {
+            position: absolute;
+            inset: 6mm;
+            border: 1px solid var(--line);
+            pointer-events: none;
+        }
+
+        .portada-marco::after {
+            content: '';
+            position: absolute;
+            inset: 2mm;
+            border: 1px solid rgba(0,208,132,0.15);
+        }
+
+        .portada-eyebrow {
+            font-family: 'Manrope', sans-serif;
+            font-size: 7pt;
+            letter-spacing: 4px;
+            color: var(--green);
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 1.5mm 4mm 1.5mm 6mm;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 6mm;
+        }
+
+        .portada-logo {
+            width: 40mm;
+            height: 40mm;
+            border-radius: 50%;
+            object-fit: contain;
+            object-position: center;
+            border: 3px solid var(--green);
+            padding: 0mm;
+            background: rgba(10,15,12,0.8);
+            margin-bottom: 6mm;
+            margin-top: 0mm;
+            box-shadow: 0 0 40px rgba(0,208,132,0.5);
+        }
+
+        .foto-1 {
+            width: 60mm;
+            height: 40mm;
+            border-radius: 30%;
+            object-fit: cover;
+            object-position: center;
+            border: 3px solid var(--green);
+            padding: 0mm;
+            background: rgba(10,15,12,0.8);
+            margin: auto;
+            box-shadow: 0 0 40px rgba(0,208,132,0.5);
+        }
+
+        .portada-nombre {
+            font-family: 'Manrope', sans-serif;
+            font-size: 30pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            margin-bottom: 3mm;
+            text-shadow: 0 0 24px rgba(77,255,184,0.55), 0 2px 8px rgba(0,168,107,0.4);
+        }
+
+        .portada-nombre .brand-dot { color: var(--green); }
+
+        .portada-linea {
+            width: 30mm;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 3mm auto;
+        }
+
+        .portada-subtitulo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10pt;
+            color: var(--text);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .portada-eslogan {
+            font-family: 'Manrope', sans-serif;
+            font-size: 9pt;
+            color: var(--green);
+            font-style: italic;
+            margin-top: 8mm;
+            letter-spacing: 1px;
+        }
+
+        .portada-estrellas {
+            display: flex;
+            gap: 2mm;
+            margin-top: 5mm;
+        }
+
+        .portada-estrellas svg {
+            width: 4mm;
+            height: 4mm;
+            color: var(--green);
+        }
+
+        .portada-creditos {
+            position: absolute;
+            bottom: 12mm;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 6pt;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        /* ============================================================
+           CONTRAPORTADA
+           ============================================================ */
+        .contra-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contra-marco {
+            position: absolute;
+            inset: 6mm;
+            border: 1px solid var(--line);
+            pointer-events: none;
+        }
+
+        .contra-eyebrow {
+            font-family: 'Manrope', sans-serif;
+            font-size: 6.5pt;
+            letter-spacing: 3px;
+            color: var(--green);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5mm;
+        }
+
+        .contra-nombre {
+            font-family: 'Manrope', sans-serif;
+            font-size: 34pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            margin-bottom: 4mm;
+            text-shadow: 0 0 24px rgba(77,255,184,0.5), 0 2px 8px rgba(0,168,107,0.4);
+        }
+
+        .contra-nombre .brand-dot { color: var(--green); }
+
+        .contra-eslogan {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10pt;
+            font-style: italic;
+            color: var(--green);
+            margin-bottom: 8mm;
+            margin-top: 8mm;
+            letter-spacing: 0.5px;
+        }
+
+        .contra-qr {
+            background: #fff;
+            padding: 0.5mm;
+            border-radius: 2mm;
+            border: 2.5px solid var(--green);
+            width: 140px;
+            height: 140px;
+            margin-bottom: 4mm;
+            margin-top: 0mm;
+            box-shadow: 0 0 30px rgba(0,208,132,0.55);
+        }
+
+        .contra-qr img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .contra-qr-label {
+            font-size: 6.5pt;
+            color: var(--muted);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 8mm;
+        }
+
+        .contra-web {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11pt;
+            font-weight: 800;
+            color: var(--green-bright);
+            letter-spacing: 0.5px;
+            margin-bottom: 6mm;
+            text-shadow: 0 0 12px rgba(0,208,132,0.6);
+        }
+
+        .contra-socials {
+            display: flex;
+            gap: 4mm;
+            margin-bottom: 6mm;
+        }
+
+        .contra-social {
+            width: 7mm;
+            height: 7mm;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0,208,132,0.4), rgba(0,168,107,0.3));
+            border: 1px solid rgba(0,208,132,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-bright);
+            box-shadow: 0 0 10px rgba(0,208,132,0.35);
+        }
+
+        .contra-social svg {
+            width: 3.5mm;
+            height: 3.5mm;
+        }
+
+        .contra-creditos {
+            position: absolute;
+            bottom: 12mm;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 6pt;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           CÓMO EMPEZAR
+           ============================================================ */
+        .como-titulo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 17pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5mm;
+            text-shadow: 0 0 15px rgba(0,208,132,0.5);
+        }
+
+        .como-titulo-sub {
+            font-size: 6.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 3mm;
+            font-weight: 600;
+        }
+
+        .como-titulo::after {
+            content: '';
+            display: block;
+            width: 12mm;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--green), transparent);
+            margin-top: 2.5mm;
+            margin-bottom: 5mm;
+        }
+
+        .pasos-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 4mm;
+            margin-bottom: 6mm;
+        }
+
+        .paso {
+            display: flex;
+            gap: 3.5mm;
+            align-items: flex-start;
+            margin: 3mm;
+        }
+
+        .paso-num {
+            flex-shrink: 0;
+            width: 8mm;
+            height: 8mm;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0,208,132,0.65), rgba(0,168,107,0.4));
+            border: 1.5px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Manrope', sans-serif;
+            font-size: 11pt;
+            font-weight: 800;
+            color: var(--green-bright);
+            box-shadow: 0 0 12px rgba(0,208,132,0.5);
+        }
+
+        .paso-titulo {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--green-bright);
+            line-height: 1.2;
+            margin-bottom: 0.8mm;
+        }
+
+        .paso-desc {
+            font-size: 7pt;
+            color: var(--text);
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        .cita-bloque {
+            background: linear-gradient(135deg, rgba(0,208,132,0.18) 0%, rgba(10,15,12,0.55) 100%);
+            border-left: 2.5px solid var(--green);
+            border-radius: 1.5mm;
+            padding: 3.2mm 3.5mm;
+            margin-bottom: 5mm;
+            position: relative;
+        }
+
+        .cita-icono {
+            position: absolute;
+            top: 2mm;
+            right: 3mm;
+            font-family: 'Manrope', sans-serif;
+            font-size: 22pt;
+            color: rgba(0,208,132,0.35);
+            line-height: 1;
+        }
+
+        .cita-texto {
+            font-family: 'Manrope', sans-serif;
+            font-size: 7.8pt;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 2mm;
+            font-weight: 400;
+        }
+
+        .cita-autor {
+            font-size: 6.2pt;
+            color: var(--green-bright);
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .cita-rol {
+            font-size: 5.8pt;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .datos-rapidos {
+            margin-top: auto;
+            padding-top: 3mm;
+            border-top: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 1.8mm;
+        }
+
+        .dato-rapido {
+            display: flex;
+            align-items: center;
+            gap: 2mm;
+            font-size: 8pt;
+            color: var(--text);
+        }
+
+        .dato-rapido svg {
+            width: 3mm;
+            height: 3mm;
+            color: var(--green-bright);
+            flex-shrink: 0;
+        }
+
+        .dato-rapido strong {
+            color: var(--green-bright);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           INTERIOR
+           ============================================================ */
+        .panel-titulo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 17pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5mm;
+            text-shadow: 0 0 15px rgba(0,208,132,0.5);
+        }
+
+        .panel-titulo-sub {
+            font-size: 6.5pt;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 3mm;
+            font-weight: 600;
+        }
+
+        .panel-titulo::after {
+            content: '';
+            display: block;
+            width: 12mm;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--green), transparent);
+            margin-top: 2.5mm;
+            margin-bottom: 3.5mm;
+        }
+
+        .bio-texto {
+            font-size: 7.2pt;
+            line-height: 1.5;
+            color: var(--text);
+            margin-bottom: 3.5mm;
+            font-weight: 300;
+        }
+
+        .bio-texto strong {
+            color: var(--green-bright);
+            font-weight: 600;
+        }
+
+        .bio-texto em {
+            color: var(--green);
+            font-style: italic;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 5.5mm;
+            position: relative;
+            padding-left: 2mm;
+            margin-top: 1mm;
+            margin-bottom: 7mm;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6.5mm;
+            top: 2mm;
+            bottom: 2mm;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--green), var(--green), var(--green), transparent);
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 3mm;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .tl-año {
+            flex-shrink: 0;
+            width: 9mm;
+            height: 9mm;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgb(0, 208, 132), rgba(0, 168, 107, 0.932));
+            border: 1.5px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5.8pt;
+            font-weight: 700;
+            color: #0a0f0c;
+            box-shadow: 0 0 10px rgba(0,208,132,0.5);
+            z-index: 1;
+        }
+
+        .tl-body {
+            flex: 1;
+            padding-top: 0.5mm;
+        }
+
+        .tl-titulo {
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.25;
+        }
+
+        .tl-desc {
+            font-size: 6.2pt;
+            color: var(--muted);
+            line-height: 1.35;
+            margin-top: 0.3mm;
+            font-weight: 300;
+        }
+
+        .mv-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3mm;
+            padding-top: 5mm;
+            border-top: 1px solid var(--line);
+            margin-bottom: 5mm;
+        }
+
+        .mv-item {
+            display: flex;
+            gap: 2.5mm;
+            align-items: flex-start;
+        }
+
+        .mv-icon {
+            flex-shrink: 0;
+            width: 6mm;
+            height: 6mm;
+            border-radius: 1mm;
+            background: linear-gradient(135deg, rgba(0,208,132,0.6), rgba(0,168,107,0.35));
+            border: 1px solid rgba(0,208,132,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-bright);
+            box-shadow: 0 0 8px rgba(0,208,132,0.4);
+            margin-top: 3mm;
+        }
+
+        .mv-icon svg {
+            width: 3.2mm;
+            height: 3.2mm;
+        }
+
+        .mv-titulo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 8pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin-bottom: 1mm;
+            margin-top: 1mm;
+        }
+
+        .mv-texto {
+            font-size: 8pt;
+            color: var(--text);
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        .valores-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1mm;
+            margin-top: 1mm;
+        }
+
+        .valor-chip {
+            font-size: 5.8pt;
+            padding: 1mm 2mm;
+            border-radius: 999px;
+            background: rgba(0,208,132,0.2);
+            border: 1px solid rgba(0,208,132,0.3);
+            color: var(--green-bright);
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            margin-bottom: 2mm;
+        }
+
+        .servicios-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+            margin-top: 2mm;
+        }
+
+        .servicio-item {
+            background: linear-gradient(135deg, rgba(0,168,107,0.25) 0%, rgba(10,15,12,0.4) 100%);
+            border: 1px solid rgba(0,208,132,0.3);
+            border-radius: 1.5mm;
+            padding: 2mm 2.5mm;
+            display: flex;
+            align-items: center;
+            gap: 2.5mm;
+            backdrop-filter: blur(10px);
+            margin-top: 2mm;
+            margin-bottom: 2mm;
+        }
+
+        .servicio-icono {
+            flex-shrink: 0;
+            width: 7mm;
+            height: 7mm;
+            border-radius: 1.2mm;
+            background: linear-gradient(135deg, rgba(0,208,132,0.7), rgba(0,168,107,0.4));
+            border: 1px solid rgba(0,208,132,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-bright);
+            box-shadow: 0 0 12px rgba(0,208,132,0.4);
+        }
+
+        .servicio-icono svg {
+            width: 4mm;
+            height: 4mm;
+        }
+
+        .servicio-titulo {
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .servicio-desc {
+            font-size: 5.9pt;
+            color: var(--muted);
+            margin-top: 0.3mm;
+            line-height: 1.3;
+            font-weight: 300;
+        }
+
+        .horarios-bloque {
+            margin-bottom: 8mm;
+            padding-top: 1mm;
+            border-top: 1px solid var(--line);
+        }
+
+        .horarios-titulo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 9.5pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            margin-bottom: 2mm;
+            margin-top: 2mm;
+            letter-spacing: 0.4px;
+        }
+
+        .horarios-titulo::after {
+            content: '';
+            display: block;
+            width: 7mm;
+            height: 1px;
+            background: var(--green);
+            margin-top: 1.2mm;
+            margin-bottom: 1mm;
+        }
+
+        .horarios-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 0mm;
+        }
+
+        .horario-linea {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 6.5pt;
+            padding: 5mm 0;
+            border-bottom: 1px dashed rgba(0,208,132,0.25);
+        }
+
+        .horario-linea:last-child {
+            border-bottom: none;
+        }
+
+        .horario-dia {
+            color: var(--muted);
+        }
+
+        .horario-hora {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .testimonio-compacto {
+            background: linear-gradient(135deg, rgba(0,208,132,0.15) 0%, rgba(10,15,12,0.5) 100%);
+            border-left: 2px solid var(--green);
+            border-radius: 1.2mm;
+            padding: 2.5mm 3mm;
+            margin-bottom: 1rem;
+            margin-top: 3mm;
+            position: relative;
+        }
+
+        .testimonio-compacto .cita-icono {
+            font-size: 16pt;
+            top: 1mm;
+            right: 2.5mm;
+        }
+
+        .testimonio-compacto .cita-texto {
+            font-size: 6.8pt;
+            margin-bottom: 1.5mm;
+        }
+
+        .testimonio-compacto .cita-autor {
+            font-size: 5.8pt;
+        }
+
+        .testimonio-compacto .cita-rol {
+            font-size: 5.4pt;
+        }
+
+        .contacto-bloque {
+            margin-top: 0rem;
+            padding-top: 2mm;
+            border-top: 1px solid var(--line);
+        }
+
+        .contacto-titulo {
+            font-family: 'Manrope', sans-serif;
+            font-size: 11pt;
+            color: var(--green-bright);
+            font-weight: 800;
+            margin-bottom: 2mm;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(0,208,132,0.5);
+        }
+
+        .contacto-titulo::after {
+            content: '';
+            display: block;
+            width: 9mm;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--green), transparent);
+            margin-top: 1.5mm;
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 5mm;
+            align-items: center;
+            margin-top: 3mm;
+        }
+
+        .qr-contenedor {
+            background: #ffffff;
+            padding: 0.5mm;
+            border-radius: 1.5mm;
+            width: 30mm;
+            height: 30mm;
+            border: 2px solid var(--green);
+            box-shadow: 0 0 20px rgba(0,208,132,0.4);
+        }
+
+        .qr-contenedor img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .qr-contenedor-1 {
+            background: #ffffff00;
+            padding: 0.5mm;
+            border-radius: 1.5mm;
+            width: 60mm;
+            height: 60mm;
+            margin: auto;
+        }
+
+        .qr-contenedor-1 img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .qr-contenedor-2 {
+            background: #ffffff;
+            padding: 0.5mm;
+            border-radius: 1.5mm;
+            width: 30mm;
+            height: 30mm;
+            border: 2px solid var(--green);
+            box-shadow: 0 0 20px rgba(0,208,132,0.4);
+            margin: auto;
+        }
+
+        .qr-contenedor-2 img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .contacto-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+            font-size: 2mm;
+        }
+
+        .contacto-linea {
+            display: flex;
+            align-items: center;
+            gap: 1.8mm;
+            font-size: 8pt;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        
+        .contacto-linea svg {
+            width: 3mm;
+            height: 3mm;
+            flex-shrink: 0;
+            color: var(--green-bright);
+        }
+
+        .web-url {
+            font-size: 9pt;
+            font-weight: 800;
+            color: var(--green-bright);
+            letter-spacing: 0.4px;
+            margin-top: 1mm;
+            padding-top: 1.2mm;
+            border-top: 1px solid rgba(0,208,132,0.3);
+            text-shadow: 0 0 10px rgba(0,208,132,0.5);
+        }
+
+        /* Marcas de pliegue */
+        @media screen {
+            .page::before,
+            .page::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                background: repeating-linear-gradient(to bottom, rgba(0,208,132,0.35) 0 4px, transparent 4px 8px);
+                z-index: 100;
+                pointer-events: none;
+            }
+
+            .page::before { left: 99mm; }
+            .page::after { right: 99mm; }
+        }
+
+        @media print {
+            html, body {
+                background: #fff;
+                padding: 0;
+                gap: 0;
+                min-height: auto;
+                display: block;
+            }
+            .page {
+                box-shadow: none;
+                page-break-after: always;
+            }
+            .page:last-child { page-break-after: auto; }
+            .page::before,
+            .page::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PÁGINA 1 — EXTERIOR
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="page">
+
+        <!-- PANEL IZQUIERDO: CÓMO TRABAJAMOS -->
+        <section class="panel bg-interior">
+            <h2 class="como-titulo">Cómo Trabajamos</h2>
+            <p class="como-titulo-sub">En 3 Pasos</p>
+
+            <div class="pasos-lista">
+                <div class="paso">
+                    <div class="paso-num">1</div>
+                    <div>
+                        <p class="paso-titulo">Cuéntanos tu idea</p>
+                        <p class="paso-desc">Agenda una conversación y describe tu proyecto. Escuchamos tus objetivos, alcance y expectativas.</p>
+                    </div>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">2</div>
+                    <div>
+                        <p class="paso-titulo">Diseñamos la solución</p>
+                        <p class="paso-desc">Definimos arquitectura, alcance y cronograma. Diseñamos la experiencia de usuario y el modelo técnico.</p>
+                    </div>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">3</div>
+                    <div>
+                        <p class="paso-titulo">Desarrollamos y entregamos</p>
+                        <p class="paso-desc">Implementamos con metodología ágil, validamos con QA y entregamos con soporte continuo post-lanzamiento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonio-compacto">
+                <span class="cita-icono">"</span>
+                <p class="cita-texto">SwiftSolve transformó nuestro proceso interno con un software a medida que superó todas las expectativas.</p>
+                <p class="cita-autor">Jonathan Buitrago</p>
+                <p class="cita-rol">Fundador de "Chef Jonathan Buitrago"</p>
+            </div>
+
+            <img class="foto-1" src="../assets/servicio4.png" alt="Metodologia">
+
+            <div class="datos-rapidos">
+                <div class="dato-rapido">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Garantía de calidad en cada entrega</span>
+                </div>
+                <div class="dato-rapido">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Entregas iterativas y medibles</span>
+                </div>
+                <div class="dato-rapido">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span>Soporte técnico continuo</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL CENTRAL: CONTRAPORTADA -->
+        <section class="panel bg-contra">
+            <div class="contra-inner">
+                <div class="contra-marco"></div>
+
+                <p class="contra-eyebrow">Software · Web · Móvil</p>
+                <h1 class="contra-nombre">SwiftSolve<span class="brand-dot">.</span></h1>
+                <p class="contra-eslogan">"Tu próxima idea. <br>Nuestra próxima solución."</p>
+
+                <div class="contra-qr">
+                    <img src="img/qr_pagina.svg" alt="QR SwiftSolve">
+                </div>
+                <p class="contra-qr-label">Escanea para visitar</p>
+
+                <p class="contra-web">swiftsolve.vercel.app</p>
+
+                <p class="contra-creditos">Colombia</p>
+            </div>
+        </section>
+
+        <!-- PANEL DERECHO: PORTADA -->
+        <section class="panel bg-portada">
+            <div class="portada-inner">
+                <div class="portada-marco"></div>
+
+                <div class="portada-eyebrow">Desarrollo de Software</div>
+
+                <img src="img/portada-logo.png" alt="SwiftSolve" class="portada-logo">
+
+                <h1 class="portada-nombre">SwiftSolve<span class="brand-dot">.</span></h1>
+
+                <div class="portada-linea"></div>
+
+                <p class="portada-subtitulo">Innovación &amp; <br>Tecnología</p>
+
+                <p class="portada-eslogan">"Tu próxima idea. <br> próxima solución."</p>
+
+                <div class="portada-estrellas">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+
+                <p class="portada-creditos">Colombia</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PÁGINA 2 — INTERIOR
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="page">
+
+        <!-- PANEL IZQUIERDO: SOBRE NOSOTROS + ESTRUCTURA -->
+        <section class="panel bg-interior">
+            <h2 class="panel-titulo">Sobre Nosotros</h2>
+            <p class="panel-titulo-sub">Pasión · Trayectoria</p>
+
+            <p class="bio-texto">
+                En SwiftSolve creemos que la tecnología es el puente entre las ideas innovadoras y su materialización en el mundo real. Combinamos <strong>experiencia técnica</strong> con visión estratégica.
+            </p>
+
+            <p class="bio-texto">
+                Desarrollamos aplicaciones web, móviles y sistemas empresariales que optimizan procesos. Nuestro compromiso es la <strong>calidad, la creatividad y la mejora continua</strong> al servicio de cada cliente.
+            </p>
+
+            <h3 class="panel-titulo" style="font-size:13pt;margin-top:2mm;">Nuestra Estructura</h3>
+
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-año">01</div>
+                    <div class="tl-body">
+                        <p class="tl-titulo">Nivel Ejecutivo</p>
+                        <p class="tl-desc">Define la visión tecnológica y aprueba inversiones en I+D.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-año">02</div>
+                    <div class="tl-body">
+                        <p class="tl-titulo">Dirección Intermedia</p>
+                        <p class="tl-desc">CTO, Dirección de Desarrollo, Operaciones y Marketing Digital.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-año">03</div>
+                    <div class="tl-body">
+                        <p class="tl-titulo">Equipos Técnicos</p>
+                        <p class="tl-desc">Desarrolladores, QA, DevOps, Data Science &amp; AI, Soporte y Educadores.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qr-contenedor-1">
+                <img src="img/qr_servicios.svg" alt="QR SwiftSolve">
+            </div>
+        </section>
+
+        <!-- PANEL CENTRAL: MISIÓN / VISIÓN / VALORES + SERVICIOS -->
+        <section class="panel bg-interior-alt">
+            <h2 class="panel-titulo">Nuestra Filosofía</h2>
+            <p class="panel-titulo-sub">Misión · Visión · Valores</p>
+
+            <div class="mv-grid">
+                <div class="mv-item">
+                    <div class="mv-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="mv-titulo">Misión</p>
+                        <p class="mv-texto">Optimizar y desarrollar software innovador y eficiente, facilitando el acceso a herramientas digitales que generen impacto positivo en la sociedad.</p>
+                    </div>
+                </div>
+
+                <div class="mv-item">
+                    <div class="mv-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="mv-titulo">Visión</p>
+                        <p class="mv-texto">Convertirnos en una empresa líder en desarrollo de software, impulsando la innovación y la transformación digital a nivel global.</p>
+                    </div>
+                </div>
+
+                <div class="mv-item">
+                    <div class="mv-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <div style="flex: 1;">
+                        <p class="mv-titulo">Valores</p>
+                        <div class="valores-chips">
+                            <span class="valor-chip">Innovación</span>
+                            <span class="valor-chip">Calidad</span>
+                            <span class="valor-chip">Compromiso</span>
+                        </div>
+                        <div class="valores-chips">
+                            <span class="valor-chip">Trabajo en equipo</span>
+                            <span class="valor-chip">Transparencia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="panel-titulo" style="font-size:13pt;margin-top:2mm;">Servicios</h3>
+
+            <div class="servicios-grid">
+                <div class="servicio-item">
+                    <div class="servicio-icono">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="servicio-titulo">Desarrollo a medida</p>
+                        <p class="servicio-desc">Soluciones personalizadas, escalables y de alto rendimiento</p>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-icono">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="servicio-titulo">Aplicaciones web</p>
+                        <p class="servicio-desc">Interfaces modernas, seguras y responsivas</p>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-icono">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="servicio-titulo">Apps móviles</p>
+                        <p class="servicio-desc">Experiencias fluidas multiplataforma</p>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-icono">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="servicio-titulo">Automatización · APIs</p>
+                        <p class="servicio-desc">Integración de sistemas y procesos inteligentes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL DERECHO: METODOLOGÍA + CONTACTO -->
+        <section class="panel bg-interior">
+            <h2 class="panel-titulo">Metodología</h2>
+            <p class="panel-titulo-sub">Proceso · Contacto</p>
+    
+            <div class="horarios-bloque" style="border-top:none;padding-top:0;">
+                <h3 class="horarios-titulo">Nuestro Proceso</h3>
+
+                <div class="qr-contenedor-2">
+                    <img src="img/qr_metodologia.svg" alt="QR SwiftSolve">
+                </div>
+                
+                <div class="horarios-lista">
+                    <div class="horario-linea">
+                        <span class="horario-dia">01 · Análisis</span>
+                        <span class="horario-hora">Requisitos</span>
+                    </div>
+                    <div class="horario-linea">
+                        <span class="horario-dia">02 · Diseño</span>
+                        <span class="horario-hora">UX / UI</span>
+                    </div>
+                    <div class="horario-linea">
+                        <span class="horario-dia">03 · Desarrollo</span>
+                        <span class="horario-hora">Ágil (Scrum)</span>
+                    </div>
+                    <div class="horario-linea">
+                        <span class="horario-dia">04 · Calidad</span>
+                        <span class="horario-hora">QA &amp; Testing</span>
+                    </div>
+                    <div class="horario-linea">
+                        <span class="horario-dia">05 · Entrega</span>
+                        <span class="horario-hora">Soporte continuo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contacto-bloque">
+                <h3 class="contacto-titulo">Contacto</h3>
+
+                <div class="contacto-grid">
+                    <div class="qr-contenedor">
+                        <img src="img/qr_contacto.svg" alt="QR SwiftSolve">
+                    </div>
+                    <div class="contacto-info">
+                        <div class="contacto-linea">
+                            <svg fill="currentColor" viewBox="0 0 24 28">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            <span class="contacto-info">+57 350 808 5470</span>
+                        </div>
+                        <div class="contacto-linea">
+                            <svg fill="currentColor" viewBox="0 0 24 28">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            <span class="contacto-info">+57 322 453 3353</span>
+                        </div>
+                        <div class="contacto-linea">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="contacto-info">edwinalexandermolinasanabria@gmail.com</span>
+                        </div>
+                        <div class="contacto-linea">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="contacto-info">juandachacon56@gmail.com</span>
+                        </div>
+                        <p class="web-url">swiftsolve.vercel.app</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
