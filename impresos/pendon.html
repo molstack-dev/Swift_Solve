@@ -39,14 +39,16 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        @page { size: 60cm 160cm; margin: 0; }
+
+        /* ── DIMENSIONES: 70cm ancho × 100cm alto ── */
+        @page { size: 70cm 100cm; margin: 0; }
 
         /* ============================================================
            PENDÓN
            ============================================================ */
         .pendon {
-            width: 60cm;
-            height: 160cm;
+            width: 70cm;
+            height: 100cm;
             background:
                 radial-gradient(ellipse at top, rgba(0,208,132,0.35) 0%, transparent 50%),
                 radial-gradient(ellipse at bottom, rgba(0,168,107,0.4) 0%, transparent 55%),
@@ -56,22 +58,22 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding: 5cm 5cm 4cm;
+            padding: 4cm 4cm 3cm;
             box-shadow: 0 30px 80px rgba(0,168,107,0.7);
         }
 
         .pendon::before {
             content: '';
             position: absolute;
-            inset: 2cm;
-            border: 1.5px solid var(--line);
+            inset: 1.5cm;
+            border: 1.2px solid var(--line);
             pointer-events: none;
         }
 
         .pendon::after {
             content: '';
             position: absolute;
-            inset: 2.4cm;
+            inset: 1.8cm;
             border: 1px solid rgba(0,208,132,0.15);
             pointer-events: none;
         }
@@ -83,53 +85,54 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            margin-bottom: 2.5cm;
+            margin-bottom: 1cm;
         }
 
         .pendon-eyebrow {
             display: inline-block;
             font-family: 'Manrope', sans-serif;
-            font-size: 1.7cm;
-            letter-spacing: 0.9cm;
+            font-size: 1.15cm;
+            letter-spacing: 0.6cm;
             color: var(--green);
             text-transform: uppercase;
             font-weight: 700;
-            padding: 0.4cm 1.5cm 0.4cm 2.4cm;
-            border-top: 1.5px solid var(--line);
-            border-bottom: 1.5px solid var(--line);
-            margin-bottom: 4cm;
+            padding: 0.3cm 1cm 0.3cm 1.6cm;
+            border-top: 1.2px solid var(--line);
+            border-bottom: 1.2px solid var(--line);
+            margin-bottom: 1.2cm;
         }
 
         .pendon-nombre {
             font-family: 'Manrope', sans-serif;
-            font-size: 9cm;
+            font-size: 6.5cm;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: -0.05em;
             line-height: 0.95;
-            text-shadow: 0 0 2.5cm rgba(77,255,184,0.55),
-                         0 0.25cm 1.2cm rgba(0,168,107,0.4);
-            margin-bottom: 1cm;
+            text-shadow: 0 0 1.8cm rgba(77,255,184,0.55),
+                         0 0.18cm 0.9cm rgba(0,168,107,0.4);
+            margin-bottom: 0.6cm;
         }
 
         .pendon-nombre .brand-dot { color: var(--green); }
 
         .pendon-linea {
-            width: 20cm;
-            height: 2px;
+            width: 15cm;
+            height: 0.2cm;
             background: linear-gradient(90deg, transparent, var(--green), transparent);
-            margin: 4cm auto;
-            margin-top: 5cm;
+            box-shadow: 0 0 0.1cm rgba(0,208,132,0.6);   /* glow */
+            border-radius: 999px;                        /* extremos redondeados */
+            margin: 2cm auto 1.5cm;
         }
 
         .pendon-subtitulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 2.5cm;
+            font-size: 1.7cm;
             color: var(--text);
-            letter-spacing: 1.4cm;
+            letter-spacing: 0.9cm;
             text-transform: uppercase;
             font-weight: 500;
-            padding-left: 1.4cm;
+            padding-left: 0.9cm;
         }
 
         /* ============================================================
@@ -138,30 +141,30 @@
         .pendon-logo-wrap {
             display: flex;
             justify-content: center;
-            margin-bottom: 3.5cm;
-            margin-top: 3.5cm;
+            margin-top: 0.8cm;
+            margin-bottom: 1cm;
             position: relative;
             z-index: 1;
         }
 
         .pendon-logo {
-            width: 45cm;
-            height: 45cm;
+            width: 30cm;
+            height: 30cm;
             border-radius: 50%;
             object-fit: cover;
             object-position: center;
             transform: scale(0.9);
             transform-origin: center;
-            border: 19px solid var(--green);
+            border: 15px solid var(--green);
             padding: 1mm;
             background: rgba(10,15,12,0.9);
             overflow: hidden;
-            box-shadow: 0 0 5cm rgba(0,208,132,0.7),
-                        0 0 2cm rgba(0,168,107,0.35);
+            box-shadow: 0 0 3.5cm rgba(0,208,132,0.7),
+                        0 0 1.5cm rgba(0,168,107,0.35);
         }
 
         /* ============================================================
-           ESLOGAN (reemplaza los servicios)
+           ESLOGAN
            ============================================================ */
         .pendon-eslogan {
             position: relative;
@@ -172,50 +175,54 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 0cm;
+            padding: 0;
         }
 
         .eslogan-texto {
             font-family: 'Manrope', sans-serif;
-            font-size: 5cm;
-            font-weight: 800;
-            letter-spacing: -0.03em;
+            font-weight: 500;
             line-height: 1.15;
             color: var(--text);
-            margin-bottom: 1.5cm;
+            margin-bottom: 1cm;
         }
 
+        /* Línea 1 — Manrope blanco */
         .eslogan-texto .linea-1 {
-            display: block;
+            display: inline;
+            font-size: 3.2cm;
+            letter-spacing: -0.03em;
             color: var(--text);
         }
 
+        /* Línea 2 — Parisienne verde brillante */
         .eslogan-texto .linea-2 {
-            display: relative;
-            font-family: 'Parisienne', cursive;   /* ← fuente aplicada */
-            font-weight: 400;                     /* ← Parisienne solo tiene weight 400 */
-            font-size: 6.5cm;                     /* ← un poco más grande para compensar */
-            letter-spacing: 0.05cm;               /* ← ligero ajuste (opcional) */
+            display: inline;
+            font-family: 'Parisienne', cursive;
+            font-weight: 400;
+            font-size: 4.4cm;
+            letter-spacing: 0;
+            line-height: 1;
             color: var(--green-bright);
-            text-shadow: 0 0 2.5cm rgba(77,255,184,0.55),
-                         0 0.3cm 1.2cm rgba(0,168,107,0.4);
+            margin-top: 0.1cm;
+            text-shadow: 0 0 1.8cm rgba(77,255,184,0.55),
+                         0 0.2cm 0.8cm rgba(0,168,107,0.4);
         }
 
         .eslogan-linea-deco {
-            width: 20cm;
-            height: 2px;
+            width: 14cm;
+            height: 1.5px;
             background: linear-gradient(90deg, transparent, var(--green), transparent);
-            margin: 2.5cm auto 2cm;
+            margin: 1.6cm auto 1.3cm;
         }
 
         .eslogan-sub {
             font-family: 'Manrope', sans-serif;
-            font-size: 2cm;
+            font-size: 1.35cm;
             font-weight: 500;
-            letter-spacing: 0.6cm;
+            letter-spacing: 0.42cm;
             text-transform: uppercase;
             color: var(--muted);
-            padding-left: 0.6cm;
+            padding-left: 0.42cm;
         }
 
         /* ============================================================
@@ -224,16 +231,16 @@
         .pendon-contacto {
             position: relative;
             z-index: 1;
-            margin-top: 2cm;
-            padding-top: 3cm;
-            border-top: 1.5px solid var(--line);
+            margin-top: 0.4cm;
+            padding-top: 1.5cm;
+            border-top: 1.2px solid var(--line);
             text-align: center;
         }
 
         .contacto-grid {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 2.5cm;
+            gap: 2cm;
             align-items: center;
             margin-top: 2mm;
         }
@@ -241,11 +248,11 @@
         .qr-grande {
             background: #fff;
             padding: 0.4cm;
-            border-radius: 0.5cm;
-            width: 19cm;
-            height: 19cm;
-            border: 10px solid var(--green);
-            box-shadow: 0 0 20cm rgba(0,208,132,0.7);
+            border-radius: 0.4cm;
+            width: 15cm;
+            height: 15cm;
+            border: 8px solid var(--green);
+            box-shadow: 0 0 14cm rgba(0,208,132,0.7);
         }
 
         .qr-grande img { width: 100%; height: 100%; display: block; }
@@ -254,41 +261,48 @@
             text-align: left;
             display: flex;
             flex-direction: column;
-            gap: 3cm;
+            gap: 1.6cm;
         }
 
         .contacto-item {
             display: flex;
             align-items: center;
-            gap: 1cm;
+            gap: 0.7cm;
             color: var(--text);
         }
 
         .contacto-item svg {
-            width: 2.2cm;
-            height: 2.2cm;
+            width: 1.9cm;
+            height: 1.9cm;
             flex-shrink: 0;
             color: var(--green-bright);
         }
 
         .contacto-item .valor {
-            font-size: 1.3cm;
+            font-size: 1.8cm;
             font-weight: 400;
             color: var(--text);
             line-height: 1;
-            padding: 20px 0;
+            padding: 10px 0;
+        }
+
+        /* ── Línea decorativa nueva arriba de la URL ── */
+        .pendon-web-deco {
+            width: 38cm;
+            height: 1.8px;
+            background: linear-gradient(90deg, transparent, var(--green), transparent);
+            margin: 2cm auto 0.8cm;
         }
 
         .pendon-web {
             font-family: 'Manrope', sans-serif;
-            font-size: 3cm;
+            font-size: 2cm;
             font-weight: 800;
             color: var(--green-bright);
-            letter-spacing: 0.4cm;
-            margin: 20px auto;
-            margin-top: 60px;
+            letter-spacing: 0.3cm;
+            margin: 0 auto;
             text-align: center;
-            text-shadow: 0 0 1.5cm rgba(0,208,132,0.7);
+            text-shadow: 0 0 1.2cm rgba(0,208,132,0.7);
         }
 
         /* ============================================================
@@ -312,9 +326,9 @@
         <!-- HEADER -->
         <div class="pendon-header">
             <div class="pendon-eyebrow">Desarrollo de Software</div>
-            <h1 class="pendon-nombre">SwiftSolve<span class="brand-dot"></span></h1>
+            <h1 class="pendon-nombre">SwiftSolve</h1>
             <div class="pendon-linea"></div>
-            <p class="pendon-subtitulo">Innovación &amp; <br> Tecnología</p>
+            <p class="pendon-subtitulo">Innovación &amp; <br> Calidad</p>
         </div>
 
         <!-- LOGO -->
@@ -322,11 +336,12 @@
             <img src="img/portada-logo.png" alt="SwiftSolve" class="pendon-logo">
         </div>
 
-        <!-- ESLOGAN (reemplaza los servicios) -->
+        <!-- ESLOGAN -->
         <section class="pendon-eslogan">
             <p class="eslogan-texto">
                 <span class="linea-1">Tu próxima idea.</span>
-                <span class="linea-1">Nuestra</span>
+                <br>
+                <span class="linea-1">Nuestra </span>
                 <span class="linea-2"> próxima solución.</span>
             </p>
 
@@ -356,19 +371,22 @@
                         <span class="valor">+57 322 453 3353</span>
                     </div>
                     <div class="contacto-item">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <svg fill="none" stroke="currentColor" viewBox="2 0 20 22" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="valor">edwinalexandermolinasanabria@gmail.com</span>
                     </div>
                     <div class="contacto-item">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <svg fill="none" stroke="currentColor" viewBox="2 0 20 22" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="valor">juandachacon56@gmail.com</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Línea decorativa nueva arriba de la URL -->
+            <div class="pendon-web-deco"></div>
 
             <p class="pendon-web">swiftsolve.vercel.app</p>
         </section>

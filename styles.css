@@ -258,9 +258,6 @@ button {
 /* ============================================================
    HERO
    ============================================================ */
-/* ============================================================
-   HERO
-   ============================================================ */
 .hero {
     position: relative;
     min-height: 640px;
@@ -325,12 +322,12 @@ button {
     50%      { opacity: 0.5; transform: scale(0.85); }
 }
 
-/* ── H1 con degradado ── */
+/* ── H1 principal ── */
 .hero h1 {
-    font-size: clamp(2.8rem, 6vw, 4.4rem);       /* ← antes 3.5–7rem: más contenido */
-    line-height: 1.05;
-    letter-spacing: -0.06em;
-    margin: 20px 0 4px;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.07em;
+    margin: 22px 0 6px;
     font-weight: 800;
     background: linear-gradient(135deg, #ffffff 40%, var(--green) 100%);
     -webkit-background-clip: text;
@@ -338,39 +335,38 @@ button {
     -webkit-text-fill-color: transparent;
 }
 
-/* El punto verde dentro del H1 necesita recuperar su color */
 .hero h1 .brand-dot {
     color: var(--green);
     -webkit-text-fill-color: var(--green);
 }
 
-/* ── Eslogan en dos líneas ── */
+/* ── Eslogan compacto debajo del H1 ── */
 .eslogan-texto {
     font-family: 'Manrope', 'Inter', sans-serif;
-    font-size: clamp(1.5rem, 3.2vw, 2.4rem);     /* ← antes 1.9–3.6rem: menos invasivo */
-    line-height: 1.2;
-    letter-spacing: -0.03em;
-    margin: 4px 0 20px;
-    font-weight: 600;
-    color: var(--text);
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    margin: 2px 0 26px;
+    font-weight: 500;
+    color: var(--text-2);
 }
 
 .eslogan-texto .linea-1 {
-    display: block;
-    color: var(--text);
+    display: inline;
+    color: var(--text-2);
 }
 
 .eslogan-texto .linea-2 {
-    display: block;
+    display: inline;
     font-family: 'Parisienne', cursive;
     font-weight: 400;
-    font-size: 1.55em;                            /* Parisienne necesita más tamaño para igualar visualmente */
+    font-size: 1.7em;
     letter-spacing: 0;
     line-height: 1;
     color: var(--green);
-    margin-top: 0.05em;
+    margin-left: 0.15em;
     text-shadow: 0 0 18px rgba(0, 208, 132, 0.35);
-    white-space: nowrap;                          /* ← evita que se rompa en 2 renglones */
+    vertical-align: -0.05em;
 }
 
 .hero-description {
@@ -1125,7 +1121,7 @@ button {
     .hero { min-height: 580px; }
     .hero-content { padding: 70px 0; }
     .hero h1 { font-size: 3.4rem; }
-    .eslogan-texto { font-size: 1.85rem; }
+    .eslogan-texto { font-size: 1.05rem; }
     .hero-description { font-size: 0.98rem; }
     .hero-buttons { align-items: stretch; flex-direction: column; max-width: 340px; }
     .hero-buttons .button { width: 100%; }
