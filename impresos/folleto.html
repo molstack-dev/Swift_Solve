@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Folleto — SwiftSolve</title>
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
     <style>
         /* ============================================================
@@ -30,10 +30,10 @@
             --green: #00d084;
             --green-bright: #4dffb8;
             --green-deep: #00a86b;
-            --dark-deep: #12201a;
-            --dark-mid: #1d3a2c;
+            --dark-deep: #0a0f0c;
+            --dark-mid: #101311;
             --glow: #00a86b;
-            --bg: #12201a;
+            --bg: #0a0f0c;
             --text: #f4f7f5;
             --muted: #a5b0a9;
             --line: rgba(0,208,132,0.3);
@@ -46,10 +46,10 @@
            PÁGINA
            ============================================================ */
         .page {
-            width: 282mm;
-            height: 200mm;
+            width: 297mm;
+            height: 210mm;
             display: grid;
-            grid-template-columns: 94mm 94mm 94mm;
+            grid-template-columns: 99mm 99mm 99mm;
             color: var(--text);
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0,168,107,0.5);
@@ -71,28 +71,28 @@
            ============================================================ */
         .bg-portada {
             background:
-                radial-gradient(ellipse at top left, rgba(0,208,132,0.39) 0%, transparent 55%),
-                radial-gradient(ellipse at bottom right, rgba(0,168,107,0.59) 0%, transparent 60%),
-                linear-gradient(160deg, #12201a 0%, #1d3a2c 50%, #12201a 100%);
+                radial-gradient(ellipse at top left, rgba(0,208,132,0.30) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(0,168,107,0.45) 0%, transparent 60%),
+                linear-gradient(160deg, #0a0f0c 0%, #101311 50%, #0a0f0c 100%);
         }
 
         .bg-interior {
             background:
-                radial-gradient(ellipse at center right, rgba(0,208,132,0.2) 0%, transparent 60%),
-                linear-gradient(180deg, #12201a 0%, #1d3a2c 100%);
+                radial-gradient(ellipse at center right, rgba(0,208,132,0.15) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0f0c 0%, #101311 100%);
         }
 
         .bg-interior-alt {
             background:
-                radial-gradient(ellipse at top right, rgba(0,208,132,0.23) 0%, transparent 55%),
-                linear-gradient(200deg, #1d3a2c 0%, #12201a 60%, #12201a 100%);
+                radial-gradient(ellipse at top right, rgba(0,208,132,0.18) 0%, transparent 55%),
+                linear-gradient(200deg, #101311 0%, #0a0f0c 60%, #0a0f0c 100%);
         }
 
         .bg-contra {
             background:
-                radial-gradient(ellipse at center, rgba(0,208,132,0.39) 0%, transparent 55%),
-                radial-gradient(ellipse at bottom, rgba(0,168,107,0.45) 0%, transparent 50%),
-                linear-gradient(160deg, #12201a 0%, #1d3a2c 100%);
+                radial-gradient(ellipse at center, rgba(0,208,132,0.30) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom, rgba(0,168,107,0.35) 0%, transparent 50%),
+                linear-gradient(160deg, #0a0f0c 0%, #101311 100%);
         }
 
         /* ============================================================
@@ -126,12 +126,12 @@
 
         .portada-eyebrow {
             font-family: 'Manrope', sans-serif;
-            font-size: 6.5pt;
+            font-size: 7pt;
             letter-spacing: 4px;
             color: var(--green);
             text-transform: uppercase;
-            font-weight: 650;
-            padding: 1.5mm 1mm 1.5mm 1mm;
+            font-weight: 700;
+            padding: 1.5mm 4mm 1.5mm 6mm;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
             margin-bottom: 6mm;
@@ -158,9 +158,9 @@
             object-fit: cover;
             object-position: center;
             border: 3px solid var(--green);
-            padding: 0.1mm;
+            padding: 0mm;
             background: rgba(10,15,12,0.8);
-            margin: auto auto;
+            margin: auto;
             box-shadow: 0 0 40px rgba(0,208,132,0.5);
         }
 
@@ -201,28 +201,6 @@
             font-style: italic;
             margin-top: 8mm;
             letter-spacing: 1px;
-    font-weight: 600;
-}
-
-        .portada-eslogan .linea-1 {
-            display: inline;
-            font-family: 'Manrope', sans-serif;
-            font-style: italic;
-            color: var(--text);
-        }
-
-        .portada-eslogan .linea-2 {
-            display: inline;
-            font-family: 'Parisienne', cursive;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1.7em;
-            letter-spacing: 0;
-            line-height: 1.1;
-            color: var(--green-bright);
-            margin-top: 0.1em;
-            margin-left: 0.1em;
-            text-shadow: 0 0 12px rgba(77,255,184,0.6);
         }
 
         .portada-estrellas {
@@ -243,13 +221,12 @@
             left: 0;
             right: 0;
             text-align: center;
-            font-size: 6.8pt;
+            font-size: 6pt;
             color: var(--muted);
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0.7;
-    font-weight: 500;
-}
+        }
 
         /* ============================================================
            CONTRAPORTADA
@@ -274,17 +251,17 @@
 
         .contra-eyebrow {
             font-family: 'Manrope', sans-serif;
-            font-size: 7pt;
+            font-size: 6.5pt;
             letter-spacing: 3px;
             color: var(--green);
             text-transform: uppercase;
-            font-weight: 550;
+            font-weight: 700;
             margin-bottom: 5mm;
         }
 
         .contra-nombre {
             font-family: 'Manrope', sans-serif;
-            font-size: 30pt;
+            font-size: 34pt;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: -0.04em;
@@ -303,28 +280,6 @@
             margin-bottom: 8mm;
             margin-top: 8mm;
             letter-spacing: 0.5px;
-    font-weight: 600;
-}
-
-        .contra-eslogan .linea-1 {
-            display: inline;
-            font-family: 'Manrope', sans-serif;
-            font-style: italic;
-            color: var(--text);
-        }
-
-        .contra-eslogan .linea-2 {
-            display: inline;
-            font-family: 'Parisienne', cursive;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1.7em;
-            letter-spacing: 0;
-            line-height: 1.1;
-            color: var(--green-bright);
-            margin-top: 0.1em;
-            margin-left: 0.1em;
-            text-shadow: 0 0 12px rgba(77,255,184,0.6);
         }
 
         .contra-qr {
@@ -356,7 +311,7 @@
         .contra-web {
             font-family: 'Manrope', sans-serif;
             font-size: 11pt;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--green-bright);
             letter-spacing: 0.5px;
             margin-bottom: 6mm;
@@ -393,13 +348,12 @@
             left: 0;
             right: 0;
             text-align: center;
-            font-size: 6.8pt;
+            font-size: 6pt;
             color: var(--muted);
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0.6;
-    font-weight: 600;
-}
+        }
 
         /* ============================================================
            CÓMO EMPEZAR
@@ -408,14 +362,14 @@
             font-family: 'Manrope', sans-serif;
             font-size: 17pt;
             color: var(--green-bright);
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0.5px;
             margin-bottom: 1.5mm;
             text-shadow: 0 0 15px rgba(0,208,132,0.5);
         }
 
         .como-titulo-sub {
-            font-size: 7pt;
+            font-size: 6.5pt;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -437,7 +391,7 @@
             display: flex;
             flex-direction: column;
             gap: 4mm;
-            margin-bottom: 3mm;
+            margin-bottom: 6mm;
         }
 
         .paso {
@@ -459,24 +413,24 @@
             justify-content: center;
             font-family: 'Manrope', sans-serif;
             font-size: 11pt;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--green-bright);
             box-shadow: 0 0 12px rgba(0,208,132,0.5);
         }
 
         .paso-titulo {
-            font-size: 8pt;
-            font-weight: 600;
+            font-size: 9pt;
+            font-weight: 700;
             color: var(--green-bright);
             line-height: 1.2;
             margin-bottom: 0.8mm;
         }
 
         .paso-desc {
-            font-size: 6.8pt;
+            font-size: 7pt;
             color: var(--text);
             line-height: 1.4;
-            font-weight: 400;
+            font-weight: 300;
         }
 
         .cita-bloque {
@@ -500,29 +454,29 @@
 
         .cita-texto {
             font-family: 'Manrope', sans-serif;
-            font-size: 9pt;
+            font-size: 7.8pt;
             font-style: italic;
             color: var(--text);
             line-height: 1.5;
             margin-bottom: 2mm;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .cita-autor {
-            font-size: 8pt;
+            font-size: 6.2pt;
             color: var(--green-bright);
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.3px;
         }
 
         .cita-rol {
-            font-size: 7pt;
+            font-size: 5.8pt;
             color: var(--muted);
-            font-weight: 500;
+            font-weight: 300;
         }
 
         .datos-rapidos {
-            margin-top: 4mm;
+            margin-top: auto;
             padding-top: 3mm;
             border-top: 1px solid var(--line);
             display: flex;
@@ -557,19 +511,19 @@
             font-family: 'Manrope', sans-serif;
             font-size: 17pt;
             color: var(--green-bright);
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0.5px;
             margin-bottom: 1.5mm;
             text-shadow: 0 0 15px rgba(0,208,132,0.5);
         }
 
         .panel-titulo-sub {
-            font-size: 7pt;
+            font-size: 6.5pt;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 3mm;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .panel-titulo::after {
@@ -583,11 +537,11 @@
         }
 
         .bio-texto {
-            font-size: 7.6pt;
+            font-size: 7.2pt;
             line-height: 1.5;
             color: var(--text);
             margin-bottom: 3.5mm;
-            font-weight: 400;
+            font-weight: 300;
         }
 
         .bio-texto strong {
@@ -651,26 +605,26 @@
 
         .tl-titulo {
             font-size: 7.5pt;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text);
             line-height: 1.25;
         }
 
         .tl-desc {
-            font-size: 6.6pt;
+            font-size: 6.2pt;
             color: var(--muted);
             line-height: 1.35;
             margin-top: 0.3mm;
-            font-weight: 500;
+            font-weight: 300;
         }
 
         .mv-grid {
             display: flex;
             flex-direction: column;
             gap: 3mm;
-            padding-top: 3mm;
+            padding-top: 5mm;
             border-top: 1px solid var(--line);
-            margin-bottom: 3mm;
+            margin-bottom: 5mm;
         }
 
         .mv-item {
@@ -703,7 +657,7 @@
             font-family: 'Manrope', sans-serif;
             font-size: 8pt;
             color: var(--green-bright);
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0.3px;
             margin-bottom: 1mm;
             margin-top: 1mm;
@@ -713,7 +667,7 @@
             font-size: 8pt;
             color: var(--text);
             line-height: 1.4;
-            font-weight: 400;
+            font-weight: 300;
         }
 
         .valores-chips {
@@ -724,13 +678,13 @@
         }
 
         .valor-chip {
-            font-size: 6.8pt;
+            font-size: 5.8pt;
             padding: 1mm 2mm;
             border-radius: 999px;
             background: rgba(0,208,132,0.2);
             border: 1px solid rgba(0,208,132,0.3);
             color: var(--green-bright);
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.2px;
             margin-bottom: 2mm;
         }
@@ -739,7 +693,7 @@
             display: flex;
             flex-direction: column;
             gap: 2mm;
-            margin-top: 0mm;
+            margin-top: 2mm;
         }
 
         .servicio-item {
@@ -751,8 +705,8 @@
             align-items: center;
             gap: 2.5mm;
             backdrop-filter: blur(10px);
-            margin-top: 1mm;
-            margin-bottom: 1mm;
+            margin-top: 2mm;
+            margin-bottom: 2mm;
         }
 
         .servicio-icono {
@@ -775,22 +729,22 @@
         }
 
         .servicio-titulo {
-            font-size: 7.2pt;
-            font-weight: 600;
+            font-size: 7.5pt;
+            font-weight: 700;
             color: var(--text);
             line-height: 1.2;
         }
 
         .servicio-desc {
-            font-size: 6.5pt;
+            font-size: 5.9pt;
             color: var(--muted);
             margin-top: 0.3mm;
             line-height: 1.3;
-            font-weight: 500;
+            font-weight: 300;
         }
 
         .horarios-bloque {
-            margin-bottom: 3mm;
+            margin-bottom: 8mm;
             padding-top: 1mm;
             border-top: 1px solid var(--line);
         }
@@ -799,7 +753,7 @@
             font-family: 'Manrope', sans-serif;
             font-size: 9.5pt;
             color: var(--green-bright);
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 2mm;
             margin-top: 2mm;
             letter-spacing: 0.4px;
@@ -836,9 +790,7 @@
 
         .horario-dia {
             color: var(--muted);
-    font-size: 7.5pt;
-    font-weight: 500;
-}
+        }
 
         .horario-hora {
             color: var(--text);
@@ -851,7 +803,7 @@
             border-radius: 1.2mm;
             padding: 2.5mm 3mm;
             margin-bottom: 1rem;
-            margin-top: 0mm;
+            margin-top: 3mm;
             position: relative;
         }
 
@@ -884,7 +836,7 @@
             font-family: 'Manrope', sans-serif;
             font-size: 11pt;
             color: var(--green-bright);
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 2mm;
             letter-spacing: 0.5px;
             text-shadow: 0 0 10px rgba(0,208,132,0.5);
@@ -902,7 +854,7 @@
         .contacto-grid {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 3mm;
+            gap: 5mm;
             align-items: center;
             margin-top: 3mm;
         }
@@ -926,8 +878,8 @@
             background: #ffffff00;
             padding: 0.5mm;
             border-radius: 1.5mm;
-            width: 56mm;
-            height: 56mm;
+            width: 60mm;
+            height: 60mm;
             margin: auto;
         }
 
@@ -957,8 +909,7 @@
             display: flex;
             flex-direction: column;
             gap: 2mm;
-            font-size: 2.1mm;
-            font-weight: 500;
+            font-size: 2mm;
         }
 
         .contacto-linea {
@@ -979,7 +930,7 @@
 
         .web-url {
             font-size: 9pt;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--green-bright);
             letter-spacing: 0.4px;
             margin-top: 1mm;
@@ -1002,8 +953,8 @@
                 pointer-events: none;
             }
 
-            .page::before { left: 94mm; }
-            .page::after { right: 94mm; }
+            .page::before { left: 99mm; }
+            .page::after { right: 99mm; }
         }
 
         @media print {
@@ -1100,11 +1051,7 @@
 
                 <p class="contra-eyebrow">Software · Web · Móvil</p>
                 <h1 class="contra-nombre">SwiftSolve<span class="brand-dot">.</span></h1>
-                <p class="contra-eslogan">
-                    <span class="linea-1">"Tu próxima idea.</span><br>
-                    <span class="linea-1">Nuestra</span>
-                    <span class="linea-2">próxima solución."</span>
-                </p>
+                <p class="contra-eslogan">"Tu próxima idea. <br>Nuestra próxima solución."</p>
 
                 <div class="contra-qr">
                     <img src="img/qr_pagina.svg" alt="QR SwiftSolve">
@@ -1132,11 +1079,7 @@
 
                 <p class="portada-subtitulo">Innovación &amp; <br>Tecnología</p>
 
-                <p class="portada-eslogan">
-                    <span class="linea-1">"Tu próxima idea.</span><br>
-                    <span class="linea-1">Nuestra</span>
-                    <span class="linea-2">próxima solución."</span>
-                </p>
+                <p class="portada-eslogan">"Tu próxima idea. <br> próxima solución."</p>
 
                 <div class="portada-estrellas">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
