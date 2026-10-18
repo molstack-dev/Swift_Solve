@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Escarapela — SwiftSolve</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
            ESCARAPELA 93 × 97 mm — estilo SwiftSolve
-           Frente: verde · blanco · negro   |   Dorso: negro · blanco · verde
-           ============================================================
-           IMÁGENES (cambia solo estas rutas en el HTML):
-             img/logo-sena.png     -> logo SENA (frente, esquina)
-             img/foto.jpg          -> foto del portador (frente)
-             img/logo-colegio.png  -> logo del colegio (frente, abajo a la derecha)
-             img/portada-logo.png  -> logo SwiftSolve (dorso)
            ============================================================ */
         :root {
             --verde: #00d084; --verde-b: #4dffb8; --verde-d: #00a86b; --negro: #0a0f0c;
+
+            /* ── MARCO (círculo): posición y tamaño ───────────────── */
+            --foto-top:      10.5;   /* mm desde arriba               */
+            --foto-offset-x: 0;      /* mm desde el centro            */
+            --foto-size:     38;     /* mm diámetro total             */
+
+            /* ── CONTENIDO (foto dentro del círculo) ──────────────── */
+            --foto-zoom:     1.2;
+            --foto-pan-x:    0;
+            --foto-pan-y:    0;
+            --foto-origin-x: 50;
+            --foto-origin-y: 50;
+
+            /* ── ANILLOS decorativos ──────────────────────────────── */
+            --foto-ring-1:     1.3;      /* mm (blanco interior)      */
+            --foto-ring-2:     1.8;      /* mm (color exterior)       */
+            --foto-ring-color: #0BDF95;  /* color del anillo exterior */
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
         html, body {
@@ -27,7 +38,6 @@
 
         @page { size: letter; margin: 0; }
 
-        /* Hoja: en pantalla se ven las dos caras lado a lado; al imprimir, una cara por hoja (dúplex) */
         .hoja { display: flex; justify-content: center; align-items: center; }
         .corte { position: relative; width: 93mm; height: 97mm; }
 
@@ -46,7 +56,6 @@
         .f-blanco { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23d7f1e3%27%20stroke-width%3D%272.6%27%20stroke-opacity%3D%271%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 30mm 30mm repeat, #ffffff; flex-direction: column; align-items: center; }
         .f-negro  { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%231d4a35%27%20stroke-width%3D%272.4%27%20stroke-opacity%3D%270.9%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 30mm 30mm repeat, #0a0f0c; }
 
-        /* Bordes de píxeles que se disuelven entre franjas */
         .escarapela::before, .escarapela::after {
             content: ''; position: absolute; left: 0; width: 93mm; height: 3.75mm;
             background-size: 100% 100%; background-repeat: no-repeat; z-index: 1; pointer-events: none;
@@ -64,7 +73,7 @@
         }
         .trasera .ranura { border-color: rgba(77,255,184,.7); }
 
-        .anillo {
+        .contra-anillo {
             position: absolute; z-index: 3; left: 50%; transform: translateX(-50%);
             border-radius: 50%; background: #0a0f0c; object-fit: cover; object-position: center top;
             box-shadow: 0 0 0 1.3mm #fff, 0 0 0 1.8mm #0a0f0c, 0 0 9px 2px rgba(0,208,132,.85);
@@ -89,7 +98,49 @@
         }
         .marca svg { width: 4mm; height: 4mm; }
 
-        .foto { top: 10.5mm; width: 36mm; height: 36mm; }
+        .contra-marca {
+            position: absolute; z-index: 3; top: 4.6mm; right: 4.5mm;
+            display: flex; align-items: center; gap: 1.5mm; color: #03D489;
+            font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 5.2pt;
+            letter-spacing: 2.2px; text-transform: uppercase;
+        }
+        .contra-marca svg { width: 4mm; height: 4mm; }
+
+        /* ============================================================
+           MARCO — el anillo se dibuja con calc() para garantizar
+           que las variables unitless funcionen en box-shadow.
+           ============================================================ */
+        .foto {
+            position: absolute;
+            z-index: 3;
+            top:  calc(var(--foto-top) * 0.8mm);
+            left: calc(50% + var(--foto-offset-x) * 1mm);
+            transform: translateX(-50%);
+            width:  calc(var(--foto-size) * 0.75mm);
+            height: calc(var(--foto-size) * 1.1mm);
+            border-radius: 25%;
+            overflow: hidden;
+            background: #0a0f0c;
+            box-shadow:
+                0 0 0 calc(var(--foto-ring-2) * 0.1mm) var(--foto-ring-color),
+                0 0 1px 2px #0EE198;
+        }
+
+        /* ============================================================
+           FOTO INTERNA: solo esta se mueve/amplia
+           ============================================================ */
+        .foto .foto-img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            object-position: center top;
+            transform-origin:
+                calc(var(--foto-origin-x) * 1%) calc(var(--foto-origin-y) * 1%);
+            transform:
+                translate(calc(var(--foto-pan-x) * 1%), calc(var(--foto-pan-y) * 1%))
+                scale(var(--foto-zoom));
+        }
 
         .frontal .f-blanco { padding-top: 24.5mm; justify-content: flex-start; }
         .nombre {
@@ -135,10 +186,29 @@
         }
 
         /* ============================================================
-           ESLOGAN — mismo look que en las tarjetas (una línea, // verde brillante)
+           ESLOGAN — idéntico al folleto
            ============================================================ */
-
-        
+        .slogan {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10.35pt;
+            color: #00a86b;
+            font-style: italic;
+            margin-top: 2.5mm;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .slogan .linea-1 {
+            display: inline; font-family: 'Manrope', sans-serif;
+            font-style: italic; color: #0a0f0c; font-weight: 700; font-size: 0.6em;
+        }
+        .slogan .linea-2 {
+            display: inline; font-family: 'Parisienne', cursive;
+            font-style: normal; font-weight: 700; font-size: 1em;
+            letter-spacing: 0; line-height: 1; color: #00a86b;
+            margin-left: 0.1em;
+        }
 
         .trasera .f-verde { flex-direction: column; align-items: center; justify-content: center; padding-top: 3mm; }
         .cargo-etq {
@@ -151,16 +221,13 @@
         }
         .cargo .brand-dot { color: #fff; }
 
-        /* Posición de las capas sobre las bandas */
         .escarapela > .banda { z-index: 0; }
 
-        /* ---------- Pantalla ---------- */
         @media screen {
             body { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
             .hoja { padding: 6mm; }
         }
 
-        /* ---------- Impresión: una cara por hoja carta, centrada; marcas de corte ---------- */
         @media print {
             html, body { background: #fff; padding: 0; gap: 0; min-height: auto; display: block; }
             .hoja { width: 215.9mm; height: 279.4mm; page-break-after: always; }
@@ -189,10 +256,12 @@
             <div class="escarapela frontal">
                 <div class="ranura"></div>
 
-                <div class="sena"><img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'"></div>
+                <div class="sena"><img src="../assets/logo-sena-verde.png" alt="SENA" onerror="this.style.display='none'"></div>
                 <div class="marca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>SwiftSolve</span></div>
 
-                <img class="anillo foto" src="img/foto.jpg" alt="" onerror="this.removeAttribute('src')">
+                <div class="foto">
+                    <img class="foto-img" src="img/edwin.jpeg" alt="Foto de Edwin" onerror="this.removeAttribute('src')">
+                </div>
 
                 <div class="banda f-verde"></div>
                 <div class="banda f-blanco">
@@ -204,26 +273,32 @@
                     <div class="gaes"><span>GAES 10</span><i>|</i><span>2026</span></div>
                     <div class="colegio">
                         <span>Logo<br>colegio</span>
-                        <img src="img/logo-colegio.png" alt="Logo colegio" onerror="this.style.display='none'">
+                        <img src="img/eoh.jpeg" alt="Logo colegio" onerror="this.style.display='none'">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!-- ============ CARA 2 · DORSO ============ -->
     <div class="hoja">
         <div class="corte">
             <div class="escarapela trasera">
                 <div class="ranura"></div>
-
-                <img class="anillo logo-dorso" src="img/portada-logo.png" alt="" onerror="this.removeAttribute('src')">
+                
+                <div class="contra-marca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>SwiftSolve</span></div>
+                <img class="contra-anillo logo-dorso" src="img/portada-logo.png" alt="" onerror="this.removeAttribute('src')">
 
                 <div class="banda f-negro"></div>
                 <div class="banda f-blanco">
                     <h2 class="trasera-nombre">SwiftSolve<span class="brand-dot">.</span></h2>
                     <div class="nombre-linea"></div>
-                    <p class="slogan"><b>//</b> Tu próxima idea. Nuestra próxima solución.</p>
+                    <p class="slogan">
+                        <span class="linea-2">"</span>
+                        <span class="linea-1">Tu próxima idea.</span><br>
+                        <span class="linea-1">Nuestra</span>
+                        <span class="linea-2">próxima solución."</span>
+                    </p>
                 </div>
                 <div class="banda f-verde">
                     <span class="cargo-etq">Cargo</span>

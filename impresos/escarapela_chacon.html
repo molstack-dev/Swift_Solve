@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Escarapela — SwiftSolve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           ESCARAPELA 93 × 97 mm — estilo SwiftSolve
+           ============================================================ */
+        :root {
+            --verde: #00d084; --verde-b: #4dffb8; --verde-d: #00a86b; --negro: #0a0f0c;
+
+            /* ── MARCO (círculo): posición y tamaño ───────────────── */
+            --foto-top:      10.5;   /* mm desde arriba               */
+            --foto-offset-x: 0;      /* mm desde el centro            */
+            --foto-size:     38;     /* mm diámetro total             */
+
+            /* ── CONTENIDO (foto dentro del círculo) ──────────────── */
+            --foto-zoom:     1.2;
+            --foto-pan-x:    0;
+            --foto-pan-y:    0;
+            --foto-origin-x: 50;
+            --foto-origin-y: 50;
+
+            /* ── ANILLOS decorativos ──────────────────────────────── */
+            --foto-ring-1:     1.3;      /* mm (blanco interior)      */
+            --foto-ring-2:     1.8;      /* mm (color exterior)       */
+            --foto-ring-color: #0BDF95;  /* color del anillo exterior */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        html, body {
+            background: #1a1a1a; padding: 20px; margin: 0;
+            display: flex; flex-direction: column; align-items: center; gap: 20px; min-height: 100vh;
+        }
+
+        @page { size: letter; margin: 0; }
+
+        .hoja { display: flex; justify-content: center; align-items: center; }
+        .corte { position: relative; width: 93mm; height: 97mm; }
+
+        .escarapela {
+            width: 93mm; height: 97mm; position: relative; overflow: hidden;
+            border-radius: 2mm; background: #fff; color: #f4f7f5;
+            display: grid;
+            box-shadow: 0 15px 40px rgba(0,168,107,0.6);
+        }
+        .frontal { grid-template-rows: 27mm 46mm 24mm; }
+        .trasera { grid-template-rows: 30mm 41mm 26mm; }
+
+        /* ---------- Bandas ---------- */
+        .banda { position: relative; display: flex; min-height: 0; padding: 0 5mm; }
+        .f-verde  { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23003d24%27%20stroke-width%3D%272.6%27%20stroke-opacity%3D%270.22%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 30mm 30mm repeat, linear-gradient(100deg, #00d084, #12e9a0); }
+        .f-blanco { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23d7f1e3%27%20stroke-width%3D%272.6%27%20stroke-opacity%3D%271%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 30mm 30mm repeat, #ffffff; flex-direction: column; align-items: center; }
+        .f-negro  { background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%231d4a35%27%20stroke-width%3D%272.4%27%20stroke-opacity%3D%270.9%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 30mm 30mm repeat, #0a0f0c; }
+
+        .escarapela::before, .escarapela::after {
+            content: ''; position: absolute; left: 0; width: 93mm; height: 3.75mm;
+            background-size: 100% 100%; background-repeat: no-repeat; z-index: 1; pointer-events: none;
+        }
+        .frontal::before { top: 25.75mm; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20850%2037.5%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270.0%27%20width%3D%27850%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%270.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2712.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2725.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2750.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2762.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2775.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27100.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27137.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27162.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27175.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27200.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27212.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27237.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27250.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27262.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27275.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27300.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27312.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27375.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27387.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27425.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27475.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27512.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27537.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27550.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27562.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27575.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27587.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27675.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27687.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27737.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27750.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27800.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27812.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2787.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27100.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27125.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27275.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27287.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27300.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27412.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27450.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27462.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27475.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27500.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27712.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27800.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27825.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%2300d084%27%2F%3E%3C%2Fsvg%3E"); }
+        .frontal::after  { top: 71.75mm; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20850%2037.5%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270.0%27%20width%3D%27850%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%270.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2712.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2725.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2750.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2775.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27150.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27162.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27187.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27200.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27262.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27275.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27287.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27312.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27325.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27337.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27350.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27362.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27375.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27387.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27400.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27425.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27512.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27525.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27537.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27550.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27575.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27587.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27600.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27625.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27650.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27662.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27687.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27700.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27712.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27737.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27750.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27800.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27137.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27162.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27175.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27287.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27312.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27337.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27462.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27500.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27575.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27675.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27737.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27812.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3C%2Fsvg%3E"); }
+        .trasera::before { top: 28.75mm; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20850%2037.5%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270.0%27%20width%3D%27850%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2737.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2787.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27162.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27200.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27212.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27225.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27237.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27275.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27337.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27350.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27375.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27387.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27425.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27437.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27450.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27462.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27475.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27500.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27512.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27525.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27537.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27550.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27600.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27612.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27625.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27637.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27650.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27662.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27675.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27687.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27712.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27737.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27775.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27787.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27800.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27812.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27837.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2712.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2787.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27125.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27137.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27262.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27312.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27562.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27650.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27787.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27800.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27812.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%230a0f0c%27%2F%3E%3C%2Fsvg%3E"); }
+        .trasera::after  { top: 69.75mm; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20850%2037.5%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270.0%27%20width%3D%27850%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%270.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2712.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2725.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2750.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2775.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27150.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27162.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27187.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27200.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27262.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27275.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27287.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27312.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27325.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27337.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27350.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27362.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27375.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27387.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27400.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27425.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27512.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27525.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27537.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27550.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27575.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27587.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27600.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27625.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27650.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27662.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27687.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27700.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27712.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27737.5%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27750.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27800.0%27%20y%3D%2712.5%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27137.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27162.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27175.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27287.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27312.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27337.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27462.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27500.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27575.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27675.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27725.0%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27737.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27812.5%27%20y%3D%2725.0%27%20width%3D%2712.5%27%20height%3D%2712.5%27%20fill%3D%27%23ffffff%27%2F%3E%3C%2Fsvg%3E"); }
+
+        /* ---------- Elementos comunes ---------- */
+        .ranura {
+            position: absolute; z-index: 4; top: 3.4mm; left: 50%; transform: translateX(-50%);
+            width: 12mm; height: 2.6mm; border-radius: 1.3mm;
+            border: .3mm dashed rgba(10,15,12,.6);
+        }
+        .trasera .ranura { border-color: rgba(77,255,184,.7); }
+
+        .contra-anillo {
+            position: absolute; z-index: 3; left: 50%; transform: translateX(-50%);
+            border-radius: 50%; background: #0a0f0c; object-fit: cover; object-position: center top;
+            box-shadow: 0 0 0 1.3mm #fff, 0 0 0 1.8mm #0a0f0c, 0 0 9px 2px rgba(0,208,132,.85);
+        }
+
+        .brand-dot { color: #00d084; }
+
+        /* ---------- FRENTE ---------- */
+        .sena {
+            position: absolute; z-index: 3; top: 4mm; left: 4.5mm;
+            width: 12mm; height: 12mm; padding: 1.2mm; border-radius: 1.4mm; background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 0 .3mm #0a0f0c;
+        }
+        .sena img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+        .marca {
+            position: absolute; z-index: 3; top: 4.6mm; right: 4.5mm;
+            display: flex; align-items: center; gap: 1.5mm; color: #0a0f0c;
+            font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 5.2pt;
+            letter-spacing: 2.2px; text-transform: uppercase;
+        }
+        .marca svg { width: 4mm; height: 4mm; }
+
+        .contra-marca {
+            position: absolute; z-index: 3; top: 4.6mm; right: 4.5mm;
+            display: flex; align-items: center; gap: 1.5mm; color: #03D489;
+            font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 5.2pt;
+            letter-spacing: 2.2px; text-transform: uppercase;
+        }
+        .contra-marca svg { width: 4mm; height: 4mm; }
+
+        /* ============================================================
+           MARCO — el anillo se dibuja con calc() para garantizar
+           que las variables unitless funcionen en box-shadow.
+           ============================================================ */
+        .foto {
+            position: absolute;
+            z-index: 3;
+            top:  calc(var(--foto-top) * 0.8mm);
+            left: calc(50% + var(--foto-offset-x) * 1mm);
+            transform: translateX(-50%);
+            width:  calc(var(--foto-size) * 0.75mm);
+            height: calc(var(--foto-size) * 1.1mm);
+            border-radius: 25%;
+            overflow: hidden;
+            background: #0a0f0c;
+            box-shadow:
+                0 0 0 calc(var(--foto-ring-2) * 0.1mm) var(--foto-ring-color),
+                0 0 1px 2px #0EE198;
+        }
+
+        /* ============================================================
+           FOTO INTERNA: solo esta se mueve/amplia
+           ============================================================ */
+        .foto .foto-img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            object-position: center top;
+            transform-origin:
+                calc(var(--foto-origin-x) * 1%) calc(var(--foto-origin-y) * 1%);
+            transform:
+                translate(calc(var(--foto-pan-x) * 1%), calc(var(--foto-pan-y) * 1%))
+                scale(var(--foto-zoom));
+        }
+
+        .frontal .f-blanco { padding-top: 24.5mm; justify-content: flex-start; }
+        .nombre {
+            font-family: 'Manrope', sans-serif; font-size: 16pt; line-height: .98; font-weight: 800;
+            letter-spacing: -0.03em; color: #0a0f0c; text-align: center;
+        }
+        .nombre-linea {
+            width: 14mm; height: .8mm; margin: 1.6mm auto 1.5mm;
+            background: linear-gradient(90deg, #0a0f0c 0 40%, #00d084 40% 100%);
+        }
+        .programa {
+            font-family: 'Manrope', sans-serif; font-size: 6.2pt; color: #0a0f0c; text-align: center;
+            letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; white-space: nowrap;
+        }
+
+        .frontal .f-negro { align-items: center; justify-content: space-between; padding: 0 6mm 0 7mm; }
+        .gaes {
+            display: flex; align-items: center; gap: 3mm;
+            font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+            font-size: 12pt; font-weight: 800; color: #4dffb8; letter-spacing: .5px;
+            text-shadow: 0 0 6px rgba(0,208,132,.7); padding-top: 2mm;
+        }
+        .gaes i { font-style: normal; color: #00d084; font-weight: 700; }
+        .colegio {
+            position: relative; width: 15mm; height: 15mm; margin-top: 2mm; border-radius: 50%;
+            border: .3mm dashed rgba(77,255,184,.8); overflow: hidden; background: #fff;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .colegio span {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            text-align: center; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 3.4pt;
+            letter-spacing: .8px; text-transform: uppercase; color: #0a0f0c; line-height: 1.3; padding: 2mm;
+        }
+        .colegio img { position: relative; max-width: 100%; max-height: 100%; object-fit: contain; background: #fff; display: block; }
+
+        /* ---------- DORSO ---------- */
+        .logo-dorso { top: 9mm; width: 34mm; height: 34mm; padding: 1mm; object-fit: contain; }
+
+        .trasera .f-blanco { padding-top: 15.5mm; justify-content: flex-start; }
+        .trasera-nombre {
+            font-family: 'Manrope', sans-serif; font-size: 20pt; line-height: .95; font-weight: 800;
+            letter-spacing: -0.03em; color: #0a0f0c; text-align: center;
+        }
+
+        /* ============================================================
+           ESLOGAN — idéntico al folleto
+           ============================================================ */
+        .slogan {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10.35pt;
+            color: #00a86b;
+            font-style: italic;
+            margin-top: 2.5mm;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .slogan .linea-1 {
+            display: inline; font-family: 'Manrope', sans-serif;
+            font-style: italic; color: #0a0f0c; font-weight: 700; font-size: 0.6em;
+        }
+        .slogan .linea-2 {
+            display: inline; font-family: 'Parisienne', cursive;
+            font-style: normal; font-weight: 700; font-size: 1em;
+            letter-spacing: 0; line-height: 1; color: #00a86b;
+            margin-left: 0.1em;
+        }
+
+        .trasera .f-verde { flex-direction: column; align-items: center; justify-content: center; padding-top: 3mm; }
+        .cargo-etq {
+            font-family: 'Manrope', sans-serif; font-size: 5.6pt; font-weight: 800; color: #0a0f0c;
+            letter-spacing: 3px; text-transform: uppercase;
+        }
+        .cargo {
+            font-family: 'Manrope', sans-serif; font-size: 34pt; font-weight: 800; line-height: 1;
+            color: #0a0f0c; letter-spacing: -0.02em;
+        }
+        .cargo .brand-dot { color: #fff; }
+
+        .escarapela > .banda { z-index: 0; }
+
+        @media screen {
+            body { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+            .hoja { padding: 6mm; }
+        }
+
+        @media print {
+            html, body { background: #fff; padding: 0; gap: 0; min-height: auto; display: block; }
+            .hoja { width: 215.9mm; height: 279.4mm; page-break-after: always; }
+            .hoja:last-child { page-break-after: auto; }
+            .escarapela { box-shadow: none; border-radius: 0; }
+            .corte::before {
+                content: ''; position: absolute; inset: -6mm; pointer-events: none;
+                background:
+                    linear-gradient(#000,#000) 6mm 0 / .2mm 4mm no-repeat,
+                    linear-gradient(#000,#000) 0 6mm / 4mm .2mm no-repeat,
+                    linear-gradient(#000,#000) calc(100% - 6mm) 0 / .2mm 4mm no-repeat,
+                    linear-gradient(#000,#000) 100% 6mm / 4mm .2mm no-repeat,
+                    linear-gradient(#000,#000) 6mm 100% / .2mm 4mm no-repeat,
+                    linear-gradient(#000,#000) 0 calc(100% - 6mm) / 4mm .2mm no-repeat,
+                    linear-gradient(#000,#000) calc(100% - 6mm) 100% / .2mm 4mm no-repeat,
+                    linear-gradient(#000,#000) 100% calc(100% - 6mm) / 4mm .2mm no-repeat;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ CARA 1 · FRENTE ============ -->
+    <div class="hoja">
+        <div class="corte">
+            <div class="escarapela frontal">
+                <div class="ranura"></div>
+
+                <div class="sena"><img src="../assets/logo-sena-verde.png" alt="SENA" onerror="this.style.display='none'"></div>
+                <div class="marca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>SwiftSolve</span></div>
+
+                <div class="foto">
+                    <img class="foto-img" src="img/chacon_1.jpeg" alt="Foto de Chacon" onerror="this.removeAttribute('src')">
+                </div>
+
+                <div class="banda f-verde"></div>
+                <div class="banda f-blanco">
+                    <h1 class="nombre">Juan David<br>Chacon Castro</h1>
+                    <div class="nombre-linea"></div>
+                    <p class="programa">Técnico en Programación de Software</p>
+                </div>
+                <div class="banda f-negro">
+                    <div class="gaes"><span>GAES 10</span><i>|</i><span>2026</span></div>
+                    <div class="colegio">
+                        <span>Logo<br>colegio</span>
+                        <img src="img/eoh.jpeg" alt="Logo colegio" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============ CARA 2 · DORSO ============ -->
+    <div class="hoja">
+        <div class="corte">
+            <div class="escarapela trasera">
+                <div class="ranura"></div>
+                
+                <div class="contra-marca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>SwiftSolve</span></div>
+                <img class="contra-anillo logo-dorso" src="img/portada-logo.png" alt="" onerror="this.removeAttribute('src')">
+
+                <div class="banda f-negro"></div>
+                <div class="banda f-blanco">
+                    <h2 class="trasera-nombre">SwiftSolve<span class="brand-dot">.</span></h2>
+                    <div class="nombre-linea"></div>
+                    <p class="slogan">
+                        <span class="linea-2">"</span>
+                        <span class="linea-1">Tu próxima idea.</span><br>
+                        <span class="linea-1">Nuestra</span>
+                        <span class="linea-2">próxima solución."</span>
+                    </p>
+                </div>
+                <div class="banda f-verde">
+                    <span class="cargo-etq">Cargo</span>
+                    <span class="cargo">CEO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
