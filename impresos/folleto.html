@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Folleto — SwiftSolve</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
     <style>
         /* ============================================================
@@ -30,10 +30,10 @@
             --green: #00d084;
             --green-bright: #4dffb8;
             --green-deep: #00a86b;
-            --dark-deep: #0a0f0c;
-            --dark-mid: #101311;
+            --dark-deep: #12201a;
+            --dark-mid: #1d3a2c;
             --glow: #00a86b;
-            --bg: #0a0f0c;
+            --bg: #12201a;
             --text: #f4f7f5;
             --muted: #a5b0a9;
             --line: rgba(0,208,132,0.3);
@@ -46,10 +46,10 @@
            PÁGINA
            ============================================================ */
         .page {
-            width: 297mm;
-            height: 210mm;
+            width: 339mm;
+            height: 205mm;
             display: grid;
-            grid-template-columns: 99mm 99mm 99mm;
+            grid-template-columns: 113mm 113mm 113mm;
             color: var(--text);
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0,168,107,0.5);
@@ -71,28 +71,28 @@
            ============================================================ */
         .bg-portada {
             background:
-                radial-gradient(ellipse at top left, rgba(0,208,132,0.30) 0%, transparent 55%),
-                radial-gradient(ellipse at bottom right, rgba(0,168,107,0.45) 0%, transparent 60%),
-                linear-gradient(160deg, #0a0f0c 0%, #101311 50%, #0a0f0c 100%);
+                radial-gradient(ellipse at top left, rgba(0,208,132,0.39) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom right, rgba(0,168,107,0.59) 0%, transparent 60%),
+                linear-gradient(160deg, #12201a 0%, #1d3a2c 50%, #12201a 100%);
         }
 
         .bg-interior {
             background:
-                radial-gradient(ellipse at center right, rgba(0,208,132,0.15) 0%, transparent 60%),
-                linear-gradient(180deg, #0a0f0c 0%, #101311 100%);
+                radial-gradient(ellipse at center right, rgba(0,208,132,0.2) 0%, transparent 60%),
+                linear-gradient(180deg, #12201a 0%, #1d3a2c 100%);
         }
 
         .bg-interior-alt {
             background:
-                radial-gradient(ellipse at top right, rgba(0,208,132,0.18) 0%, transparent 55%),
-                linear-gradient(200deg, #101311 0%, #0a0f0c 60%, #0a0f0c 100%);
+                radial-gradient(ellipse at top right, rgba(0,208,132,0.23) 0%, transparent 55%),
+                linear-gradient(200deg, #1d3a2c 0%, #12201a 60%, #12201a 100%);
         }
 
         .bg-contra {
             background:
-                radial-gradient(ellipse at center, rgba(0,208,132,0.30) 0%, transparent 55%),
-                radial-gradient(ellipse at bottom, rgba(0,168,107,0.35) 0%, transparent 50%),
-                linear-gradient(160deg, #0a0f0c 0%, #101311 100%);
+                radial-gradient(ellipse at center, rgba(0,208,132,0.39) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom, rgba(0,168,107,0.45) 0%, transparent 50%),
+                linear-gradient(160deg, #12201a 0%, #1d3a2c 100%);
         }
 
         /* ============================================================
@@ -126,12 +126,12 @@
 
         .portada-eyebrow {
             font-family: 'Manrope', sans-serif;
-            font-size: 7pt;
+            font-size: 7.5pt;
             letter-spacing: 4px;
             color: var(--green);
             text-transform: uppercase;
-            font-weight: 700;
-            padding: 1.5mm 4mm 1.5mm 6mm;
+            font-weight: 750;
+            padding: 1.5mm 1mm 1.5mm 1mm;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
             margin-bottom: 6mm;
@@ -160,13 +160,13 @@
             border: 3px solid var(--green);
             padding: 0mm;
             background: rgba(10,15,12,0.8);
-            margin: auto;
+            margin: 2mm auto;
             box-shadow: 0 0 40px rgba(0,208,132,0.5);
         }
 
         .portada-nombre {
             font-family: 'Manrope', sans-serif;
-            font-size: 30pt;
+            font-size: 33pt;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: -0.04em;
@@ -186,21 +186,43 @@
 
         .portada-subtitulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 10pt;
+            font-size: 11.5pt;
             color: var(--text);
             letter-spacing: 4px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 1.6;
         }
 
         .portada-eslogan {
             font-family: 'Manrope', sans-serif;
-            font-size: 9pt;
+            font-size: 10.35pt;
             color: var(--green);
             font-style: italic;
             margin-top: 8mm;
             letter-spacing: 1px;
+    font-weight: 700;
+}
+
+        .portada-eslogan .linea-1 {
+            display: inline;
+            font-family: 'Manrope', sans-serif;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .portada-eslogan .linea-2 {
+            display: inline;
+            font-family: 'Parisienne', cursive;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1.7em;
+            letter-spacing: 0;
+            line-height: 1.1;
+            color: var(--green-bright);
+            margin-top: 0.1em;
+            margin-left: 0.1em;
+            text-shadow: 0 0 12px rgba(77,255,184,0.6);
         }
 
         .portada-estrellas {
@@ -221,12 +243,13 @@
             left: 0;
             right: 0;
             text-align: center;
-            font-size: 6pt;
+            font-size: 7.82pt;
             color: var(--muted);
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0.7;
-        }
+    font-weight: 600;
+}
 
         /* ============================================================
            CONTRAPORTADA
@@ -251,17 +274,17 @@
 
         .contra-eyebrow {
             font-family: 'Manrope', sans-serif;
-            font-size: 6.5pt;
+            font-size: 8.05pt;
             letter-spacing: 3px;
             color: var(--green);
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 650;
             margin-bottom: 5mm;
         }
 
         .contra-nombre {
             font-family: 'Manrope', sans-serif;
-            font-size: 34pt;
+            font-size: 33pt;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: -0.04em;
@@ -274,12 +297,34 @@
 
         .contra-eslogan {
             font-family: 'Manrope', sans-serif;
-            font-size: 10pt;
+            font-size: 11.5pt;
             font-style: italic;
             color: var(--green);
-            margin-bottom: 8mm;
+            margin-bottom: 18mm;
             margin-top: 8mm;
             letter-spacing: 0.5px;
+            font-weight: 700;
+}
+
+        .contra-eslogan .linea-1 {
+            display: inline;
+            font-family: 'Manrope', sans-serif;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .contra-eslogan .linea-2 {
+            display: inline;
+            font-family: 'Parisienne', cursive;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1.7em;
+            letter-spacing: 0;
+            line-height: 1.1;
+            color: var(--green-bright);
+            margin-top: 0.1em;
+            margin-left: 0.1em;
+            text-shadow: 0 0 12px rgba(77,255,184,0.6);
         }
 
         .contra-qr {
@@ -290,7 +335,7 @@
             width: 140px;
             height: 140px;
             margin-bottom: 4mm;
-            margin-top: 0mm;
+            margin-top: 10mm;
             box-shadow: 0 0 30px rgba(0,208,132,0.55);
         }
 
@@ -301,16 +346,17 @@
         }
 
         .contra-qr-label {
-            font-size: 6.5pt;
+            font-size: 7.47pt;
             color: var(--muted);
             letter-spacing: 2.5px;
             text-transform: uppercase;
             margin-bottom: 8mm;
+            font-weight: 500;
         }
 
         .contra-web {
             font-family: 'Manrope', sans-serif;
-            font-size: 11pt;
+            font-size: 12.65pt;
             font-weight: 800;
             color: var(--green-bright);
             letter-spacing: 0.5px;
@@ -348,19 +394,20 @@
             left: 0;
             right: 0;
             text-align: center;
-            font-size: 6pt;
+            font-size: 7.82pt;
             color: var(--muted);
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0.6;
-        }
+    font-weight: 700;
+}
 
         /* ============================================================
            CÓMO EMPEZAR
            ============================================================ */
         .como-titulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 17pt;
+            font-size: 19.55pt;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: 0.5px;
@@ -369,12 +416,12 @@
         }
 
         .como-titulo-sub {
-            font-size: 6.5pt;
+            font-size: 8.05pt;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 3mm;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .como-titulo::after {
@@ -391,14 +438,14 @@
             display: flex;
             flex-direction: column;
             gap: 4mm;
-            margin-bottom: 6mm;
+            margin-bottom: 3mm;
         }
 
         .paso {
             display: flex;
             gap: 3.5mm;
             align-items: flex-start;
-            margin: 3mm;
+            margin: 2mm;
         }
 
         .paso-num {
@@ -412,14 +459,14 @@
             align-items: center;
             justify-content: center;
             font-family: 'Manrope', sans-serif;
-            font-size: 11pt;
+            font-size: 12.65pt;
             font-weight: 800;
             color: var(--green-bright);
             box-shadow: 0 0 12px rgba(0,208,132,0.5);
         }
 
         .paso-titulo {
-            font-size: 9pt;
+            font-size: 9.2pt;
             font-weight: 700;
             color: var(--green-bright);
             line-height: 1.2;
@@ -427,10 +474,10 @@
         }
 
         .paso-desc {
-            font-size: 7pt;
+            font-size: 7.82pt;
             color: var(--text);
             line-height: 1.4;
-            font-weight: 300;
+            font-weight: 500;
         }
 
         .cita-bloque {
@@ -447,36 +494,37 @@
             top: 2mm;
             right: 3mm;
             font-family: 'Manrope', sans-serif;
-            font-size: 22pt;
+            font-size: 25.3pt;
             color: rgba(0,208,132,0.35);
             line-height: 1;
+            font-weight: 500;
         }
 
         .cita-texto {
             font-family: 'Manrope', sans-serif;
-            font-size: 7.8pt;
+            font-size: 10.35pt;
             font-style: italic;
             color: var(--text);
             line-height: 1.5;
             margin-bottom: 2mm;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         .cita-autor {
-            font-size: 6.2pt;
+            font-size: 9.2pt;
             color: var(--green-bright);
             font-weight: 700;
             letter-spacing: 0.3px;
         }
 
         .cita-rol {
-            font-size: 5.8pt;
+            font-size: 8.05pt;
             color: var(--muted);
-            font-weight: 300;
+            font-weight: 600;
         }
 
         .datos-rapidos {
-            margin-top: auto;
+            margin-top: 6mm;
             padding-top: 3mm;
             border-top: 1px solid var(--line);
             display: flex;
@@ -488,8 +536,9 @@
             display: flex;
             align-items: center;
             gap: 2mm;
-            font-size: 8pt;
+            font-size: 9.2pt;
             color: var(--text);
+            font-weight: 500;
         }
 
         .dato-rapido svg {
@@ -501,7 +550,7 @@
 
         .dato-rapido strong {
             color: var(--green-bright);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         /* ============================================================
@@ -509,7 +558,7 @@
            ============================================================ */
         .panel-titulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 17pt;
+            font-size: 19.55pt;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: 0.5px;
@@ -518,12 +567,12 @@
         }
 
         .panel-titulo-sub {
-            font-size: 6.5pt;
+            font-size: 8.05pt;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 3mm;
-            font-weight: 600;
+            font-weight: 800;
         }
 
         .panel-titulo::after {
@@ -537,16 +586,16 @@
         }
 
         .bio-texto {
-            font-size: 7.2pt;
+            font-size: 8.74pt;
             line-height: 1.5;
             color: var(--text);
             margin-bottom: 3.5mm;
-            font-weight: 300;
+            font-weight: 500;
         }
 
         .bio-texto strong {
             color: var(--green-bright);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .bio-texto em {
@@ -591,8 +640,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5.8pt;
-            font-weight: 700;
+            font-size: 6.67pt;
+            font-weight: 800;
             color: #0a0f0c;
             box-shadow: 0 0 10px rgba(0,208,132,0.5);
             z-index: 1;
@@ -604,18 +653,18 @@
         }
 
         .tl-titulo {
-            font-size: 7.5pt;
+            font-size: 8.62pt;
             font-weight: 700;
             color: var(--text);
             line-height: 1.25;
         }
 
         .tl-desc {
-            font-size: 6.2pt;
+            font-size: 7.59pt;
             color: var(--muted);
             line-height: 1.35;
             margin-top: 0.3mm;
-            font-weight: 300;
+            font-weight: 600;
         }
 
         .mv-grid {
@@ -624,7 +673,7 @@
             gap: 3mm;
             padding-top: 5mm;
             border-top: 1px solid var(--line);
-            margin-bottom: 5mm;
+            margin-bottom: 2mm;
         }
 
         .mv-item {
@@ -655,7 +704,7 @@
 
         .mv-titulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 8pt;
+            font-size: 9.2pt;
             color: var(--green-bright);
             font-weight: 800;
             letter-spacing: 0.3px;
@@ -664,10 +713,10 @@
         }
 
         .mv-texto {
-            font-size: 8pt;
+            font-size: 9.2pt;
             color: var(--text);
             line-height: 1.4;
-            font-weight: 300;
+            font-weight: 500;
         }
 
         .valores-chips {
@@ -678,7 +727,7 @@
         }
 
         .valor-chip {
-            font-size: 5.8pt;
+            font-size: 7.82pt;
             padding: 1mm 2mm;
             border-radius: 999px;
             background: rgba(0,208,132,0.2);
@@ -693,7 +742,7 @@
             display: flex;
             flex-direction: column;
             gap: 2mm;
-            margin-top: 2mm;
+            margin-top: 0mm;
         }
 
         .servicio-item {
@@ -705,8 +754,8 @@
             align-items: center;
             gap: 2.5mm;
             backdrop-filter: blur(10px);
-            margin-top: 2mm;
-            margin-bottom: 2mm;
+            margin-top: 0mm;
+            margin-bottom: 0mm;
         }
 
         .servicio-icono {
@@ -729,29 +778,29 @@
         }
 
         .servicio-titulo {
-            font-size: 7.5pt;
+            font-size: 8.28pt;
             font-weight: 700;
             color: var(--text);
             line-height: 1.2;
         }
 
         .servicio-desc {
-            font-size: 5.9pt;
+            font-size: 7.47pt;
             color: var(--muted);
             margin-top: 0.3mm;
             line-height: 1.3;
-            font-weight: 300;
+            font-weight: 600;
         }
 
         .horarios-bloque {
-            margin-bottom: 8mm;
+            margin-bottom: 1mm;
             padding-top: 1mm;
             border-top: 1px solid var(--line);
         }
 
         .horarios-titulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 9.5pt;
+            font-size: 10.92pt;
             color: var(--green-bright);
             font-weight: 800;
             margin-bottom: 2mm;
@@ -779,9 +828,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 6.5pt;
-            padding: 5mm 0;
+            font-size: 7.47pt;
+            padding: 4mm 0;
             border-bottom: 1px dashed rgba(0,208,132,0.25);
+            font-weight: 500;
         }
 
         .horario-linea:last-child {
@@ -790,11 +840,13 @@
 
         .horario-dia {
             color: var(--muted);
-        }
+    font-size: 8.62pt;
+    font-weight: 600;
+}
 
         .horario-hora {
             color: var(--text);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .testimonio-compacto {
@@ -803,41 +855,46 @@
             border-radius: 1.2mm;
             padding: 2.5mm 3mm;
             margin-bottom: 1rem;
-            margin-top: 3mm;
+            margin-top: 0mm;
             position: relative;
         }
 
         .testimonio-compacto .cita-icono {
-            font-size: 16pt;
+            font-size: 18.4pt;
             top: 1mm;
             right: 2.5mm;
+            font-weight: 500;
         }
 
         .testimonio-compacto .cita-texto {
-            font-size: 6.8pt;
+            font-size: 7.82pt;
             margin-bottom: 1.5mm;
+            font-weight: 500;
         }
 
         .testimonio-compacto .cita-autor {
-            font-size: 5.8pt;
+            font-size: 6.67pt;
+            font-weight: 500;
         }
 
         .testimonio-compacto .cita-rol {
-            font-size: 5.4pt;
+            font-size: 6.21pt;
+            font-weight: 500;
         }
 
         .contacto-bloque {
             margin-top: 0rem;
-            padding-top: 2mm;
+            padding-top: 0mm;
             border-top: 1px solid var(--line);
         }
 
         .contacto-titulo {
             font-family: 'Manrope', sans-serif;
-            font-size: 11pt;
+            font-size: 12.65pt;
             color: var(--green-bright);
             font-weight: 800;
             margin-bottom: 2mm;
+            margin-top: 2mm;
             letter-spacing: 0.5px;
             text-shadow: 0 0 10px rgba(0,208,132,0.5);
         }
@@ -854,7 +911,7 @@
         .contacto-grid {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 5mm;
+            gap: 3mm;
             align-items: center;
             margin-top: 3mm;
         }
@@ -878,8 +935,8 @@
             background: #ffffff00;
             padding: 0.5mm;
             border-radius: 1.5mm;
-            width: 60mm;
-            height: 60mm;
+            width: 52mm;
+            height: 52mm;
             margin: auto;
         }
 
@@ -908,17 +965,19 @@
         .contacto-info {
             display: flex;
             flex-direction: column;
-            gap: 2mm;
-            font-size: 2mm;
+            gap: 2.5mm;
+            font-size: 2.7mm;
+            font-weight: 600;
         }
 
         .contacto-linea {
             display: flex;
             align-items: center;
             gap: 1.8mm;
-            font-size: 8pt;
+            font-size: 9.2pt;
             color: var(--text);
             line-height: 1.3;
+            font-weight: 500;
         }
         
         .contacto-linea svg {
@@ -929,13 +988,14 @@
         }
 
         .web-url {
-            font-size: 9pt;
+            font-size: 10.35pt;
             font-weight: 800;
             color: var(--green-bright);
             letter-spacing: 0.4px;
             margin-top: 1mm;
             padding-top: 1.2mm;
             border-top: 1px solid rgba(0,208,132,0.3);
+            width: fit-content;
             text-shadow: 0 0 10px rgba(0,208,132,0.5);
         }
 
@@ -953,8 +1013,8 @@
                 pointer-events: none;
             }
 
-            .page::before { left: 99mm; }
-            .page::after { right: 99mm; }
+            .page::before { left: 113mm; }
+            .page::after { right: 113mm; }
         }
 
         @media print {
@@ -973,7 +1033,82 @@
             .page::before,
             .page::after { display: none; }
         }
-    </style>
+    
+:root { --verde:#00d084; --verde-b:#4dffb8; --verde-d:#00a86b; --negro:#0a0f0c; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+
+/* ============================================================
+   REDISEÑO · VERDE / NEGRO / BLANCO en tercios iguales
+   Cada hoja = 1 panel verde + 1 panel negro + 1 panel blanco
+   ============================================================ */
+.panel { padding: 12mm 8mm 8mm; }
+.panel::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6mm;
+    background-repeat: no-repeat; background-size: 100% 100%; z-index: 6; pointer-events: none;
+}
+.edge-negro::before  { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20990%2060%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270%27%20width%3D%27990%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2730%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2745%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2760%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2775%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27105%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27120%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27165%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27180%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27225%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27300%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27360%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27375%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27390%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27450%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27480%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27510%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27525%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27555%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27600%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27615%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27645%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27660%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27690%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27720%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27765%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27780%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27795%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27810%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27840%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27885%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27915%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27975%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2745%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2760%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2775%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27135%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27285%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27465%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27540%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27570%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27585%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27645%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27660%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27690%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27765%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27870%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27885%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27915%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27930%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27945%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%270%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%2730%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27135%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27150%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27300%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27555%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27600%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3Crect%20x%3D%27810%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%230a0f0c%27%2F%3E%3C%2Fsvg%3E"); }
+.edge-verde::before  { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20990%2060%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270%27%20width%3D%27990%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%270%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2745%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2760%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2775%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27120%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27135%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27165%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27195%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27210%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27240%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27285%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27300%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27315%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27345%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27360%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27375%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27390%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27405%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27420%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27435%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27450%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27465%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27480%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27495%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27510%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27525%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27585%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27630%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27645%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27705%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27750%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27810%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27840%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27855%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27885%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27900%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27915%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27960%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27975%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2775%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%2790%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27165%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27255%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27330%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27375%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27510%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27555%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27690%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27705%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27720%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27810%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27855%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27870%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27885%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27915%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27930%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27975%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27120%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27180%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27270%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27285%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27540%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27705%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27735%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3Crect%20x%3D%27960%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%2300d084%27%2F%3E%3C%2Fsvg%3E"); }
+.edge-blanco::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20990%2060%27%20preserveAspectRatio%3D%27none%27%20shape-rendering%3D%27crispEdges%27%3E%3Crect%20x%3D%270%27%20y%3D%270%27%20width%3D%27990%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2730%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2745%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27105%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27165%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27180%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27195%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27255%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27270%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27285%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27300%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27315%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27330%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27345%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27360%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27390%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27420%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27435%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27450%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27465%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27480%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27525%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27630%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27675%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27720%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27735%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27750%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27780%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27810%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27855%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27915%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27930%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27945%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27975%27%20y%3D%2715%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2715%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27165%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27225%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27285%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27315%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27345%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27360%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27390%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27435%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27450%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27510%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27540%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27570%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27600%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27630%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27645%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27675%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27690%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27735%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27765%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27780%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27840%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27870%27%20y%3D%2730%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%2760%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27240%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27285%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27300%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27330%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27570%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27585%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27615%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27660%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27885%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3Crect%20x%3D%27945%27%20y%3D%2745%27%20width%3D%2715%27%20height%3D%2715%27%20fill%3D%27%23ffffff%27%2F%3E%3C%2Fsvg%3E"); }
+
+/* ---- NEGRO: circuito + neón ---- */
+.tema-negro {
+    --text:#f4f7f5; --muted:#a5b0a9; --green:#00d084; --green-bright:#4dffb8; --line:rgba(0,208,132,.38);
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%231b3a2c%27%20stroke-width%3D%272.2%27%20stroke-opacity%3D%271%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 56mm 56mm repeat,
+        radial-gradient(ellipse at 88% 0%, rgba(0,208,132,.38) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 100%, rgba(0,168,107,.28) 0%, transparent 55%), #0a0f0c;
+}
+.tema-negro .contra-qr { border-color:#00d084; box-shadow: 0 0 0 1.5mm #0a0f0c, 0 0 0 2mm #00d084, 0 0 30px rgba(0,208,132,.65); }
+.tema-negro .contra-eyebrow { color:#0a0f0c; background:#00d084; padding:1.5mm 4mm; border-radius:99px; letter-spacing:2.5px; }
+.tema-negro .contra-marco { border-color: rgba(0,208,132,.45); }
+
+/* ---- BLANCO: circuito suave + chevrones ---- */
+.tema-blanco {
+    --text:#0a0f0c; --muted:#45564d; --green:#00a86b; --green-bright:#00774a; --line:rgba(0,168,107,.40);
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20130%2080%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%2300d084%27%20stroke-width%3D%2712%27%20stroke-linecap%3D%27square%27%20stroke-linejoin%3D%27miter%27%20opacity%3D%270.55%27%3E%3Cpolyline%20points%3D%2710%2C10%2040%2C40%2010%2C70%27%20stroke-opacity%3D%271%27%2F%3E%3Cpolyline%20points%3D%2748%2C10%2078%2C40%2048%2C70%27%20stroke-opacity%3D%270.6%27%2F%3E%3Cpolyline%20points%3D%2786%2C10%20116%2C40%2086%2C70%27%20stroke-opacity%3D%270.3%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") right 4mm bottom 4mm / 22mm auto no-repeat, url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23d7f1e3%27%20stroke-width%3D%272.4%27%20stroke-opacity%3D%271%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 56mm 56mm repeat, #ffffff;
+}
+.tema-blanco .panel-titulo, .tema-blanco .como-titulo, .tema-blanco .contacto-titulo, .tema-blanco .horarios-titulo { text-shadow: none; }
+.tema-blanco .panel-titulo::after, .tema-blanco .como-titulo::after { width: 14mm; height: 3px; background: linear-gradient(90deg, #0a0f0c 0 40%, #00d084 40% 100%); }
+.tema-blanco .paso-num { background:#0a0f0c; color:#4dffb8; border:1.5px solid #00d084; box-shadow: 0 0 0 1mm rgba(0,208,132,.25); }
+.tema-blanco .testimonio-compacto { --text:#f4f7f5; --muted:#a5b0a9; --green:#00d084; --green-bright:#4dffb8;
+    background:#0a0f0c; border-left:3px solid #00d084; box-shadow: 3px 3px 0 rgba(0,208,132,.55); }
+.tema-blanco .cita-icono { color: rgba(0,208,132,.65); }
+.tema-blanco .foto-1 { border-color:#0a0f0c; box-shadow: 4px 4px 0 #00d084; }
+.tema-blanco .dato-rapido svg, .tema-blanco .contacto-linea svg { color:#00a86b; }
+.tema-blanco .horario-linea { border-bottom-color: rgba(0,168,107,.5); }
+.tema-blanco .horario-hora { color:#0a0f0c; }
+.tema-blanco .qr-contenedor, .tema-blanco .qr-contenedor-2 { border:2px solid #0a0f0c; box-shadow: 4px 4px 0 #00d084; }
+.tema-blanco .web-url { color:#00774a; text-shadow:none; border-top-color: rgba(0,168,107,.45); }
+.tema-blanco .contacto-bloque { border-top-color: rgba(0,168,107,.45); }
+
+/* ---- VERDE: color de marca a pleno ---- */
+.tema-verde {
+    --text:#07140d; --muted:#0b3a26; --green:#0a0f0c; --green-bright:#0a0f0c; --line:rgba(10,15,12,.55);
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20130%2080%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%230a0f0c%27%20stroke-width%3D%2712%27%20stroke-linecap%3D%27square%27%20stroke-linejoin%3D%27miter%27%20opacity%3D%270.35%27%3E%3Cpolyline%20points%3D%2710%2C10%2040%2C40%2010%2C70%27%20stroke-opacity%3D%271%27%2F%3E%3Cpolyline%20points%3D%2748%2C10%2078%2C40%2048%2C70%27%20stroke-opacity%3D%270.6%27%2F%3E%3Cpolyline%20points%3D%2786%2C10%20116%2C40%2086%2C70%27%20stroke-opacity%3D%270.3%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") right 4mm bottom 4mm / 24mm auto no-repeat, url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20300%20300%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23003d24%27%20stroke-width%3D%272.4%27%20stroke-opacity%3D%270.22%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M20%2050H80L110%2080H190%27%2F%3E%3Cpath%20d%3D%27M280%2030H230L205%2055V110%27%2F%3E%3Cpath%20d%3D%27M60%20170V210L90%20240H160%27%2F%3E%3Cpath%20d%3D%27M270%20190H240L220%20210V270%27%2F%3E%3Cpath%20d%3D%27M120%20130H150L170%20150%27%2F%3E%3Ccircle%20cx%3D%2720%27%20cy%3D%2750%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27190%27%20cy%3D%2780%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27280%27%20cy%3D%2730%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27205%27%20cy%3D%27110%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%27170%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27160%27%20cy%3D%27240%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27270%27%20cy%3D%27190%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27220%27%20cy%3D%27270%27%20r%3D%275%27%2F%3E%3Ccircle%20cx%3D%27170%27%20cy%3D%27150%27%20r%3D%275%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 0 0 / 56mm 56mm repeat,
+        radial-gradient(ellipse at 15% 8%, rgba(255,255,255,.38) 0%, transparent 50%),
+        linear-gradient(160deg, #10e99c 0%, #00d084 45%, #00a86b 100%);
+}
+.tema-verde .portada-nombre, .tema-verde .contra-nombre, .tema-verde .panel-titulo, .tema-verde .como-titulo { color:#0a0f0c; text-shadow:none; }
+.tema-verde .brand-dot { color:#ffffff !important; }
+.tema-verde .panel-titulo::after { width:14mm; height:3px; background: linear-gradient(90deg, #0a0f0c 0 40%, #ffffff 40% 100%); }
+.tema-verde .portada-logo { border-color:#0a0f0c; background:#0a0f0c; box-shadow: 0 0 0 2mm #fff, 0 0 0 2.6mm #0a0f0c, 0 8px 20px rgba(0,0,0,.35); margin-bottom: 8mm; }
+.tema-verde .portada-eyebrow { color:#4dffb8; background:#0a0f0c; border:none; border-radius:99px; padding:1.8mm 5mm; letter-spacing:3px; }
+.tema-verde .portada-linea { background: linear-gradient(90deg, transparent, #0a0f0c, transparent); }
+.tema-verde .portada-subtitulo { color:#0a0f0c; }
+.tema-verde .portada-eslogan .linea-1 { color:#07140d; }
+.tema-verde .portada-eslogan .linea-2 { color:#ffffff; text-shadow: 0 1.5px 0 rgba(10,15,12,.9), 0 0 8px rgba(10,15,12,.3); }
+.tema-verde .portada-marco { border-color: rgba(10,15,12,.5); }
+.tema-verde .portada-marco::after { border-color: rgba(10,15,12,.2); }
+.tema-verde .portada-estrellas { gap: 4mm; }
+.tema-verde .portada-estrellas svg { width:6mm; height:6mm; color:#0a0f0c; }
+.tema-verde .portada-creditos { color:#0b3a26; opacity:.95; }
+.tema-verde .mv-icon { background:#0a0f0c; color:#4dffb8; border:1px solid #0a0f0c; box-shadow:none; }
+.tema-verde .mv-grid { border-top-color: rgba(10,15,12,.5); }
+.tema-verde .valor-chip { background:#0a0f0c; color:#4dffb8; border-color:#0a0f0c; }
+.tema-verde .servicio-item { --text:#f4f7f5; --muted:#a5b0a9; background:#0a0f0c; border:1px solid #0a0f0c; box-shadow: 3px 3px 0 rgba(255,255,255,.85); }
+.tema-verde .servicio-icono { background: linear-gradient(135deg,#00d084,#00a86b); color:#0a0f0c; border:none; box-shadow:none; }
+
+</style>
 </head>
 <body>
 
@@ -983,7 +1118,7 @@
     <div class="page">
 
         <!-- PANEL IZQUIERDO: CÓMO TRABAJAMOS -->
-        <section class="panel bg-interior">
+        <section class="panel tema-blanco edge-negro">
             <h2 class="como-titulo">Cómo Trabajamos</h2>
             <p class="como-titulo-sub">En 3 Pasos</p>
 
@@ -1045,13 +1180,18 @@
         </section>
 
         <!-- PANEL CENTRAL: CONTRAPORTADA -->
-        <section class="panel bg-contra">
+        <section class="panel tema-negro edge-verde">
             <div class="contra-inner">
                 <div class="contra-marco"></div>
 
                 <p class="contra-eyebrow">Software · Web · Móvil</p>
                 <h1 class="contra-nombre">SwiftSolve<span class="brand-dot">.</span></h1>
-                <p class="contra-eslogan">"Tu próxima idea. <br>Nuestra próxima solución."</p>
+                <p class="portada-eslogan">
+                    <span class="linea-2">"</span>
+                    <span class="linea-1">Tu próxima idea.</span><br>
+                    <span class="linea-1">Nuestra</span>
+                    <span class="linea-2">próxima solución."</span>
+                </p>
 
                 <div class="contra-qr">
                     <img src="img/qr_pagina.svg" alt="QR SwiftSolve">
@@ -1065,7 +1205,7 @@
         </section>
 
         <!-- PANEL DERECHO: PORTADA -->
-        <section class="panel bg-portada">
+        <section class="panel tema-verde edge-blanco">
             <div class="portada-inner">
                 <div class="portada-marco"></div>
 
@@ -1079,13 +1219,14 @@
 
                 <p class="portada-subtitulo">Innovación &amp; <br>Tecnología</p>
 
-                <p class="portada-eslogan">"Tu próxima idea. <br> próxima solución."</p>
+                <p class="portada-eslogan">
+                    <span class="linea-2">"</span>
+                    <span class="linea-1">Tu próxima idea.</span><br>
+                    <span class="linea-1">Nuestra</span>
+                    <span class="linea-2">próxima solución."</span>
+                </p>
 
-                <div class="portada-estrellas">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
+                <div class="portada-estrellas"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-5-6-5M12 19h8"/></svg></div>
 
                 <p class="portada-creditos">Colombia</p>
             </div>
@@ -1099,7 +1240,7 @@
     <div class="page">
 
         <!-- PANEL IZQUIERDO: SOBRE NOSOTROS + ESTRUCTURA -->
-        <section class="panel bg-interior">
+        <section class="panel tema-negro edge-blanco">
             <h2 class="panel-titulo">Sobre Nosotros</h2>
             <p class="panel-titulo-sub">Pasión · Trayectoria</p>
 
@@ -1143,7 +1284,7 @@
         </section>
 
         <!-- PANEL CENTRAL: MISIÓN / VISIÓN / VALORES + SERVICIOS -->
-        <section class="panel bg-interior-alt">
+        <section class="panel tema-verde edge-negro">
             <h2 class="panel-titulo">Nuestra Filosofía</h2>
             <p class="panel-titulo-sub">Misión · Visión · Valores</p>
 
@@ -1248,7 +1389,7 @@
         </section>
 
         <!-- PANEL DERECHO: METODOLOGÍA + CONTACTO -->
-        <section class="panel bg-interior">
+        <section class="panel tema-blanco edge-verde">
             <h2 class="panel-titulo">Metodología</h2>
             <p class="panel-titulo-sub">Proceso · Contacto</p>
     
